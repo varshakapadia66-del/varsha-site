@@ -145,6 +145,10 @@ section { padding-block: 22px 0; scroll-margin-top: 70px; }
 .mcard.t1 { --c: var(--sky); --c-bg: var(--sky-bg); } .mcard.t2 { --c: var(--amber); --c-bg: var(--amber-bg); } .mcard.t3 { --c: var(--coral); --c-bg: var(--coral-bg); }
 .mcard.t4 { --c: var(--violet); --c-bg: var(--violet-bg); } .mcard.t5 { --c: var(--teal-deep); --c-bg: var(--teal-mist); } .mcard.t6 { --c: var(--indigo); --c-bg: var(--indigo-bg); }
 .mimg { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #0A1A24; }
+.mimg.fit { background: #000; }
+.mchips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 2px; }
+.mchips i { font-style: normal; font-size: 11px; font-weight: 600; padding: 2px 7px; border-radius: 6px; background: var(--c-bg); color: var(--c); }
+.mimg.fit img { object-fit: contain !important; }
 .mimg img { width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1); transform-origin: 50% 60%; }
 @media (prefers-reduced-motion: no-preference) { .mcard.on .mimg img { animation: mkb 4.5s ease-out forwards; } @keyframes mkb { to { transform: scale(1.08); } } }
 .mtag { position: absolute; left: 10px; top: 10px; font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: #fff; padding: 4px 9px; border-radius: 99px; background: color-mix(in srgb, var(--c) 82%, transparent); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
@@ -494,7 +498,7 @@ footer { text-align: center; color: var(--text3); font-size: 12px; padding-block
   <div class="wrap">
     <a class="logo" href="#top">Varsha<span>.</span></a>
     <div class="nav-links">
-      <a href="#inside">At work</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#frameworks">Frameworks</a><a href="#writing">Writing</a><a href="#videos">Videos</a><a href="#projects">Projects</a><a href="#beyond">Beyond work</a>
+      <a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#inside">At work</a><a href="#writing">Writing</a><a href="#videos">Videos</a><a href="#projects">Projects</a><a href="#beyond">Beyond work</a>
     </div>
     <a class="btn btn-primary btn-sm" href="#contact">Contact</a>
   </div>
@@ -542,37 +546,6 @@ footer { text-align: center; color: var(--text3); font-size: 12px; padding-block
     <div class="stat s5"><b>$1B+</b><span>PYUSD cap scaled at low loss</span></div>
     <div class="stat s6"><b>50</b><span>countries of KYC/KYB compliance</span></div>
   </div>
-
-  <!-- Inside my work -->
-  <section id="inside" aria-labelledby="inside-h">
-    <div class="card">
-      <div class="sec-row sec-head">
-        <div style="display:grid;gap:6px"><span class="label">Varsha at work</span><h2 id="inside-h">Fraud, identity and teams</h2><p class="ainote">Illustrations are AI-generated.</p></div>
-        <div class="cctl">
-          <button class="cbtn" id="cPrev" type="button" aria-label="Previous moment"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
-          <button class="cbtn" id="cPlay" type="button" aria-label="Pause autoplay"></button>
-          <button class="cbtn" id="cNext" type="button" aria-label="Next moment"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
-        </div>
-      </div>
-      <div class="carousel" id="carousel" role="region" aria-roledescription="carousel" aria-label="Varsha at work" tabindex="0">
-        <article class="mcard t3" aria-roledescription="slide" aria-label="1 of 3">
-          <div class="mimg"><img src="avatar.jpg" alt="AI-generated avatar of Varsha at a holographic fraud console" loading="lazy" style="object-position:50% 8%"><span class="mtag">Fraud · checkout</span><span class="aichip on-img">AI</span></div>
-          <div class="mbody"><h3>Scoring an agent checkout</h3><p>Five risk signals, one decision: approve, decline or step up.</p>
-            <div class="mpills"><i class="p">velocity</i><i class="p">cart</i><i class="f">payment</i><i class="p">shipping</i><i class="f">behavior</i></div></div>
-        </article>
-        <article class="mcard t4" aria-roledescription="slide" aria-label="2 of 3">
-          <div class="mimg"><img src="w4-monitor.jpg" alt="AI-generated avatar of Varsha monitoring live identity signals" loading="lazy"><span class="mtag">Identity · live</span><span class="aichip on-img">AI</span></div>
-          <div class="mbody"><h3>Live identity signals</h3><p>Linking devices to accounts to catch account farms early.</p>
-            <div class="mnote">1 shared device · 4 accounts → farm signal</div></div>
-        </article>
-        <article class="mcard t6" aria-roledescription="slide" aria-label="3 of 3">
-          <div class="mimg"><img src="w6-integ.jpg" alt="AI-generated avatars of Varsha and a teammate integrating two systems" loading="lazy"><span class="mtag">Teams · integration</span><span class="aichip on-img">AI</span></div>
-          <div class="mbody"><h3>Systems integration</h3><p>Engineering, legal and risk aligned before the release ships.</p></div>
-        </article>
-      </div>
-      <div class="dots" id="cDots" role="group" aria-label="Choose a moment"></div>
-    </div>
-  </section>
 
   <!-- Experience -->
   <section id="experience" aria-labelledby="exp-h">
@@ -632,7 +605,7 @@ footer { text-align: center; color: var(--text3); font-size: 12px; padding-block
       <div class="sec-head"><span class="label">Skills</span><h2 id="skills-h">What I work on</h2><p>Areas of expertise.</p></div>
       <div class="skills">
         <div class="skill k1"><span class="sglare" aria-hidden="true"></span><h3><span class="sic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 11c0 3-1 6-3 8"/><path d="M8 7.5A5 5 0 0 1 17 11c0 2-.3 4-1 6"/><path d="M5 10a7 7 0 0 1 13-3.5"/><path d="M12 15c-.3 2-1 3.5-2 5"/><path d="M15.5 13.5c-.2 2.5-.8 4.5-1.8 6.5"/></svg></span>Identity &amp; authentication</h3><div class="chips"><span class="chip">Device graphs</span><span class="chip">Behavioral biometrics</span><span class="chip">Tokenization</span><span class="chip">3DS</span><span class="chip">CIP / KYC / KYB</span></div><details class="sx"><summary>See examples <span>3</span></summary><ul><li><b>$40M/yr</b> fraud cut with a 1B+ device identity graph and behavioral biometrics (PayPal)</li><li><b>Dynamic 3DS</b> and tokenization risk for PayPal and Venmo cards</li></ul><div class="sxl"><a href="#p-agentic">Project: Agentic Commerce Fraud Demo →</a></div></details></div>
-        <div class="skill k2"><span class="sglare" aria-hidden="true"></span><h3><span class="sic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></span>Fraud &amp; abuse</h3><div class="chips"><span class="chip">Scam &amp; APP fraud</span><span class="chip">Bot &amp; agent detection</span><span class="chip">Card-not-present</span><span class="chip">Case management</span><span class="chip">Disputes</span></div><details class="sx"><summary>See examples <span>4</span></summary><ul><li><b>$84M</b> EU scam liability mitigated with a real-time LLM intervention engine (PayPal)</li><li><b>$50M+</b> scam losses cut with GenAI scam and phishing classifiers (PayPal)</li></ul><div class="sxl"><a href="#p-agentic">Project: Agentic Commerce Fraud Demo →</a><a href="#frameworks">Framework: fraud &amp; disputes landscape →</a></div></details></div>
+        <div class="skill k2"><span class="sglare" aria-hidden="true"></span><h3><span class="sic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></span>Fraud &amp; abuse</h3><div class="chips"><span class="chip">Scam &amp; APP fraud</span><span class="chip">Bot &amp; agent detection</span><span class="chip">Card-not-present</span><span class="chip">Case management</span><span class="chip">Disputes</span></div><details class="sx"><summary>See examples <span>4</span></summary><ul><li><b>$84M</b> EU scam liability mitigated with a real-time LLM intervention engine (PayPal)</li><li><b>$50M+</b> scam losses cut with GenAI scam and phishing classifiers (PayPal)</li></ul><div class="sxl"><a href="#p-agentic">Project: Agentic Commerce Fraud Demo →</a><a href="#inside">Framework: fraud &amp; disputes landscape →</a></div></details></div>
         <div class="skill k3"><span class="sglare" aria-hidden="true"></span><h3><span class="sic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></span>Risk engines</h3><div class="chips"><span class="chip">ML &amp; rule engines</span><span class="chip">Dynamic LLM rules</span><span class="chip">Rules engine modernization</span><span class="chip">Multi-tenant platforms</span><span class="chip">Cost optimization</span></div><details class="sx"><summary>See examples <span>3</span></summary><ul><li><b>Agentic</b> fraud detection with LLM-driven rules (Visa)</li><li><b>$4B</b> ACH volume enabled by open-banking representment (PayPal)</li></ul><div class="sxl"><a data-li="7477330042289684480" target="_blank" rel="noopener">Post: AI doesn’t just scale productivity. It scales patterns. ↗</a></div></details></div>
         <div class="skill k4"><span class="sglare" aria-hidden="true"></span><h3><span class="sic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M5 21h14"/><path d="M6 7h12"/><path d="M6 7l-3 7a3 3 0 0 0 6 0zM18 7l-3 7a3 3 0 0 0 6 0z"/></svg></span>Regulation &amp; privacy</h3><div class="chips"><span class="chip">GDPR</span><span class="chip">PSD3 / PSR</span><span class="chip">Travel Rule</span><span class="chip">VIDA</span><span class="chip">MAS</span><span class="chip">CFPB / NACHA</span><span class="chip">PIPL · RBI</span></div><details class="sx"><summary>See examples <span>4</span></summary><ul><li><b>GDPR</b> policy gate shipped to a hard contract deadline (PayPal)</li><li><b>50 countries</b> of KYC/KYB, plus PIPL and RBI data localization (PayPal)</li></ul><div class="sxl"><a href="#p-wiki">Project: llm-wiki for legacy AML →</a><a data-li="7189787730162208768" target="_blank" rel="noopener">Post: EU AI Act breakdown for data scientists ↗</a></div></details></div>
         <div class="skill k5"><span class="sglare" aria-hidden="true"></span><h3><span class="sic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></span>AI &amp; agentic systems</h3><div class="chips"><span class="chip">Multi-agent orchestration</span><span class="chip">Claude</span><span class="chip">MCP</span><span class="chip">LLM guardrails</span><span class="chip">Rapid prototyping</span></div><details class="sx"><summary>See examples <span>4</span></summary><ul><li><b>Teaching</b> PMs, data scientists and analysts to prototype with Claude and MCP (Visa)</li><li><b>8 live prototypes</b> built and shipped on my own time</li></ul><div class="sxl"><a href="#p-wiki">Project: llm-wiki →</a><a data-li="7470474873518268416" target="_blank" rel="noopener">Post: The AI-native migration playbook ↗</a></div></details></div>
@@ -646,14 +619,70 @@ footer { text-align: center; color: var(--text3); font-size: 12px; padding-block
     </div>
   </section>
 
-  <!-- Frameworks -->
-  <section id="frameworks" aria-labelledby="fw-h">
-    <div class="fwband">
-      <div class="sec-head"><span class="label" style="color:var(--teal-light)">Frameworks</span><h2 id="fw-h" style="color:#fff">How I map fraud</h2><p class="ainote" style="color:#9CA3AF">Diagrams drafted with Napkin AI.</p></div>
-      <div class="fwgrid">
-        <figure class="fw"><img src="fw/landscape.png" alt="Fraud and disputes landscape: Fraud.Net, Signifyd, Ethoca, PayPal, Chargeflow, Stripe Radar, Kount and Mastercard" loading="lazy"><figcaption>Competitors on my radar</figcaption></figure>
-        <figure class="fw"><img src="fw/insight-layers.png" alt="Layers of merchant fraud insight: fraud trends, transaction anomalies, chargebacks and refunds, customer behavior, comparative performance" loading="lazy"><figcaption>Layers of merchant insight</figcaption></figure>
+  <!-- Inside my work -->
+  <section id="inside" aria-labelledby="inside-h">
+    <div class="card">
+      <div class="sec-row sec-head">
+        <div style="display:grid;gap:6px"><span class="label">Varsha at work</span><h2 id="inside-h">Risk, platforms and teams</h2><p class="ainote">Illustrations are AI-generated; diagrams drafted with Napkin AI.</p></div>
+        <div class="cctl">
+          <button class="cbtn" id="cPrev" type="button" aria-label="Previous moment"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <button class="cbtn" id="cPlay" type="button" aria-label="Pause autoplay"></button>
+          <button class="cbtn" id="cNext" type="button" aria-label="Next moment"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+        </div>
       </div>
+      <div class="carousel" id="carousel" role="region" aria-roledescription="carousel" aria-label="Varsha at work" tabindex="0">
+        <article class="mcard t1" aria-roledescription="slide" aria-label="1 of 12">
+          <div class="mimg"><img src="v-issuing.jpg" alt="AI-generated illustration of Varsha: issuing risk decisions" loading="lazy"><span class="mtag">Issuing risk</span><span class="aichip on-img">AI</span></div>
+          <div class="mbody"><h3>Issuing risk decisions</h3><p>Approve, decline or step up, in real time, for every card a bank issues.</p></div>
+        </article>
+        <article class="mcard t5" aria-roledescription="slide" aria-label="2 of 12">
+          <div class="mimg"><img src="v-builder.jpg" alt="AI-generated illustration of Varsha prototyping with Claude, Replit and n8n" loading="lazy"><span class="mtag">Product builder</span><span class="aichip on-img">AI</span></div>
+          <div class="mbody"><h3>Prototyping over long meetings</h3><p>Building working solutions with Claude, Replit and n8n to align legal, compliance and product fast.</p></div>
+        </article>
+        <article class="mcard t3" aria-roledescription="slide" aria-label="3 of 12">
+          <div class="mimg"><img src="v-acquiring.jpg" alt="AI-generated illustration of Varsha: merchant network risk" loading="lazy"><span class="mtag">Acquiring risk</span><span class="aichip on-img">AI</span></div>
+          <div class="mbody"><h3>Merchant network risk</h3><p>Spotting risky merchants across the acquiring network before losses land.</p></div>
+        </article>
+        <article class="mcard t6" aria-roledescription="slide" aria-label="4 of 12">
+          <div class="mimg"><img src="v-360.jpg" alt="AI-generated illustration of Varsha: one view across the lifecycle" loading="lazy"><span class="mtag">360° view</span><span class="aichip on-img">AI</span></div>
+          <div class="mbody"><h3>One view across the lifecycle</h3><p>Unified dashboards that follow a payment from issuing through acquiring.</p></div>
+        </article>
+        <article class="mcard t2" aria-roledescription="slide" aria-label="5 of 12">
+          <div class="mimg"><img src="v-merchant.jpg" alt="AI-generated illustration of Varsha: fraud protection made simple" loading="lazy"><span class="mtag">Mid-size merchants</span><span class="aichip on-img">AI</span></div>
+          <div class="mbody"><h3>Fraud protection made simple</h3><p>Risk tools that growing merchants can switch on and trust.</p></div>
+        </article>
+        <article class="mcard t5" aria-roledescription="slide" aria-label="6 of 12">
+          <div class="mimg"><img src="v-modern.jpg" alt="AI-generated illustration of Varsha: slick, fast, agent-powered products" loading="lazy"><span class="mtag">Modernization</span><span class="aichip on-img">AI</span></div>
+          <div class="mbody"><h3>Slick, fast, agent-powered products</h3><p>Rebuilding legacy tools into fast, modern experiences where AI agents do the heavy lifting.</p></div>
+        </article>
+        <article class="mcard t4" aria-roledescription="slide" aria-label="7 of 12">
+          <div class="mimg"><img src="v-cloud.jpg" alt="AI-generated illustration of Varsha: moving risk to the cloud" loading="lazy"><span class="mtag">Cloud migration</span><span class="aichip on-img">AI</span></div>
+          <div class="mbody"><h3>Moving risk to the cloud</h3><p>Migrating risk platforms to the cloud without missing a transaction.</p></div>
+        </article>
+        <article class="mcard t3" aria-roledescription="slide" aria-label="8 of 12">
+          <div class="mimg"><img src="avatar.jpg" alt="AI-generated avatar of Varsha at a holographic fraud console" loading="lazy" style="object-position:50% 8%"><span class="mtag">Fraud · checkout</span><span class="aichip on-img">AI</span></div>
+          <div class="mbody"><h3>Scoring an agent checkout</h3><p>Five risk signals, one decision: approve, decline or step up.</p>
+            <div class="mpills"><i class="p">velocity</i><i class="p">cart</i><i class="f">payment</i><i class="p">shipping</i><i class="f">behavior</i></div></div>
+        </article>
+        <article class="mcard t4" aria-roledescription="slide" aria-label="9 of 12">
+          <div class="mimg"><img src="w4-monitor.jpg" alt="AI-generated avatar of Varsha monitoring live identity signals" loading="lazy"><span class="mtag">Identity · live</span><span class="aichip on-img">AI</span></div>
+          <div class="mbody"><h3>Live identity signals</h3><p>Linking devices to accounts to catch account farms early.</p>
+            <div class="mnote">1 shared device · 4 accounts → farm signal</div></div>
+        </article>
+        <article class="mcard t6" aria-roledescription="slide" aria-label="10 of 12">
+          <div class="mimg"><img src="w6-integ.jpg" alt="AI-generated avatars of Varsha and a teammate integrating two systems" loading="lazy"><span class="mtag">Teams · integration</span><span class="aichip on-img">AI</span></div>
+          <div class="mbody"><h3>Systems integration</h3><p>Engineering, legal and risk aligned before the release ships.</p></div>
+        </article>
+        <article class="mcard t4" aria-roledescription="slide" aria-label="11 of 12">
+          <div class="mimg fit"><img src="fw/landscape-card.png" alt="Diagram: fraud and disputes competitors, Fraud.Net, Signifyd, Ethoca, PayPal, Chargeflow, Stripe Radar, Kount and Mastercard" loading="lazy"><span class="mtag">Framework</span><span class="aichip on-img">AI</span></div>
+          <div class="mbody"><h3>Competitors on my radar</h3><p>The fraud and disputes players I track.</p><div class="mchips"><i>Fraud.Net</i><i>Signifyd</i><i>Ethoca</i><i>PayPal</i><i>Chargeflow</i><i>Stripe Radar</i><i>Kount</i><i>Mastercard</i></div></div>
+        </article>
+        <article class="mcard t6" aria-roledescription="slide" aria-label="12 of 12">
+          <div class="mimg fit"><img src="fw/insight-layers-card.png" alt="Diagram: layers of merchant insight, fraud trends, transaction anomalies, chargebacks and refunds, customer behavior, comparative performance" loading="lazy"><span class="mtag">Framework</span><span class="aichip on-img">AI</span></div>
+          <div class="mbody"><h3>Layers of merchant insight</h3><p>What merchants need to see, from the base up.</p><div class="mchips"><i>Fraud trends</i><i>Transaction anomalies</i><i>Chargebacks &amp; refunds</i><i>Customer behavior</i><i>Comparative performance</i></div></div>
+        </article>
+      </div>
+      <div class="dots" id="cDots" role="group" aria-label="Choose a moment"></div>
     </div>
   </section>
 
@@ -1082,7 +1111,10 @@ document.getElementById("ytGrid").innerHTML = VIDEOS.map(([id, t, d, tag, c]) =>
   </article>`).join("");
 document.getElementById("ytGrid").addEventListener("click", e => {
   const b = e.target.closest(".vthumb[data-vid]"); if (!b) return;
-  const id = b.dataset.vid, f = document.createElement("iframe");
+  const id = b.dataset.vid;
+  /* In a framed preview (like the Claude artifact viewer) embeds are blocked, so open YouTube instead */
+  if (window.self !== window.top) { const a = document.createElement("a"); a.href = `https://www.youtube.com/watch?v=${id}`; a.target = "_blank"; a.rel = "noopener"; document.body.appendChild(a); a.click(); a.remove(); return; }
+  const f = document.createElement("iframe");
   f.className = "vframe";
   f.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
   f.title = b.getAttribute("aria-label");
