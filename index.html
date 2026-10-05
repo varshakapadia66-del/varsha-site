@@ -18,7 +18,7 @@
   --teal: #06B6D4; --teal-dark: #0891B2; --teal-deep: #0E7490; --teal-light: #22D3EE; --teal-pale: #CFFAFE; --teal-mist: #F0FDFE;
   --white: #FFFFFF; --text: #0A0F1E; --text2: #4B5563; --text3: #9CA3AF;
   --border: rgba(6,182,212,.18); --border2: #E5E7EB;
-  --indigo: #6366F1; --indigo-bg: #EEF2FF; --coral: #F43F5E; --coral-bg: #FFF1F2; --amber: #D97706; --amber-bg: #FFFBEB; --violet: #8B5CF6; --violet-bg: #F5F3FF; --emerald: #059669; --emerald-bg: #ECFDF5; --sky: #0284C7; --sky-bg: #F0F9FF; --li: #0A66C2;
+  --indigo: #6366F1; --indigo-bg: #EEF2FF; --coral: #2563EB; --coral-bg: #EFF6FF; --amber: #D97706; --amber-bg: #FFFBEB; --violet: #8B5CF6; --violet-bg: #F5F3FF; --emerald: #059669; --emerald-bg: #ECFDF5; --sky: #0284C7; --sky-bg: #F0F9FF; --li: #0A66C2;
   --ok: #10B981; --ok-bg: #ECFDF5; --warn: #D97706; --warn-bg: #FFFBEB;
   --r: 10px; --r-lg: 16px; --r-xl: 24px;
   --sans: "Plus Jakarta Sans", -apple-system, "Segoe UI", sans-serif;
@@ -109,7 +109,7 @@ section { padding-block: 22px 0; scroll-margin-top: 70px; }
 .vid { margin: 0; position: relative; border-radius: var(--r-xl); overflow: hidden; background: #0B1220; aspect-ratio: 16 / 9; box-shadow: 0 24px 50px -24px rgba(99,102,241,.55); }
 .vid video { width: 100%; height: 100%; object-fit: cover; display: block; }
 .vid figcaption { position: absolute; left: 10px; right: 10px; bottom: 10px; display: flex; align-items: center; gap: 8px; color: #fff; font-size: 13px; font-weight: 700; }
-.live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--coral); box-shadow: 0 0 0 4px rgba(244,63,94,.3); }
+.live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 4px rgba(16,185,129,.3); }
 .vbtn { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font: 600 12px var(--sans); color: #fff; padding: 7px 11px; border-radius: 99px; border: 1px solid rgba(255,255,255,.35); cursor: pointer; background: rgba(15,23,42,.45); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); min-height: 34px; }
 .vbtn:hover { background: rgba(15,23,42,.65); }
 .vbtn svg { width: 15px; height: 15px; }
@@ -277,7 +277,7 @@ section { padding-block: 22px 0; scroll-margin-top: 70px; }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .chip { font-size: 12.5px; font-weight: 600; padding: 3px 8px; border-radius: 6px; background: var(--c-bg, var(--teal-mist)); color: var(--c, var(--teal-deep)); cursor: default; user-select: text; }
 .skill { --c: var(--teal-deep); --c-bg: var(--teal-mist); border-top: 3px solid var(--c); }
-.skill h3::before { background: var(--c) !important; }
+.skill h3::before { display: none; }
 .k1 { --c: var(--sky); --c-bg: var(--sky-bg); } .k2 { --c: var(--coral); --c-bg: var(--coral-bg); } .k3 { --c: var(--indigo); --c-bg: var(--indigo-bg); }
 .k4 { --c: var(--amber); --c-bg: var(--amber-bg); } .k5 { --c: var(--violet); --c-bg: var(--violet-bg); } .k6 { --c: var(--emerald); --c-bg: var(--emerald-bg); }
 .awards { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 12px; }
@@ -296,6 +296,116 @@ section { padding-block: 22px 0; scroll-margin-top: 70px; }
 .filters button[aria-pressed="true"] { background: var(--teal-mist); border-color: var(--teal); color: var(--teal-deep); }
 .filters .n { font-family: var(--mono); font-size: 11px; color: var(--text3); margin-left: 3px; }
 
+/* Skills: icons, tilt, examples */
+.skill { position: relative; overflow: hidden; transform-style: preserve-3d; transition: transform .25s var(--ease), box-shadow .25s var(--ease), border-color .25s var(--ease); will-change: transform; }
+.skill.tilting { box-shadow: 0 24px 40px -22px var(--c); border-color: var(--c); }
+.sglare { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .25s; background: radial-gradient(260px circle at var(--gx, 50%) var(--gy, 50%), rgba(255,255,255,.7), transparent 60%); mix-blend-mode: soft-light; }
+.skill.tilting .sglare { opacity: 1; }
+.skill > *:not(.sglare) { position: relative; }
+.sic { width: 34px; height: 34px; border-radius: 10px; display: inline-grid; place-items: center; background: var(--c-bg); color: var(--c); flex: none; transition: transform .3s var(--ease); }
+.sic svg { width: 19px; height: 19px; }
+.skill:hover .sic { transform: translateZ(20px) rotate(-6deg) scale(1.06); }
+.skill h3 { gap: 10px !important; }
+.sx { margin-top: 12px; border-top: 1px dashed var(--border2); padding-top: 10px; }
+.sx summary { list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font: 600 12.5px var(--sans); color: var(--c); padding: 6px 10px; border-radius: 99px; background: var(--c-bg); user-select: none; }
+.sx summary::-webkit-details-marker { display: none; }
+.sx summary::before { content: "▸"; transition: transform .2s var(--ease); }
+.sx[open] summary::before { transform: rotate(90deg); }
+.sx summary span { font-family: var(--mono); font-size: 11px; opacity: .75; }
+.sx summary:hover { filter: brightness(.95); }
+.sx ul { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 8px; }
+.sx li { font-size: 13px; color: var(--text2); line-height: 1.45; padding-left: 12px; border-left: 2px solid var(--c-bg); }
+.sx li b { color: var(--c); font-weight: 700; }
+.sxl { display: flex; flex-direction: column; gap: 4px; margin-top: 10px; }
+.sxl a { font-size: 12.5px; font-weight: 600; color: var(--c); cursor: pointer; }
+.sx[open] ul, .sx[open] .sxl { animation: sxin .3s var(--ease); }
+@keyframes sxin { from { opacity: 0; transform: translateY(-4px); } }
+
+/* Videos */
+.yts { display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 600px) { .yts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 900px) { .yts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .yts { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.yt { --c: var(--teal-deep); --c-bg: var(--teal-mist); display: flex; flex-direction: column; gap: 6px; border: 1px solid var(--border2); border-radius: var(--r-lg); overflow: hidden; background: #fff; color: var(--text); padding-bottom: 14px; transition: transform .22s var(--ease), border-color .22s var(--ease), box-shadow .22s var(--ease); }
+.yt:hover, .yt:focus-within { border-color: var(--c); box-shadow: var(--shadow-up); }
+.yt .vframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; background: #000; margin-bottom: 6px; }
+.yt .vthumb { border: 0; padding: 0; width: 100%; cursor: pointer; font: inherit; position: relative; aspect-ratio: 16 / 9; background: linear-gradient(135deg, var(--c), var(--c-bg)); display: grid; place-items: center; overflow: hidden; margin-bottom: 6px; }
+.yt .vthumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .4s var(--ease); }
+.yt:hover .vthumb img { transform: scale(1.05); }
+.yt .play { position: relative; z-index: 1; width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; background: rgba(10,15,30,.72); color: #fff; box-shadow: 0 8px 20px -6px rgba(0,0,0,.5); transition: transform .25s var(--ease); }
+.yt .play svg { width: 20px; height: 20px; margin-left: 3px; }
+.yt:hover .play { transform: scale(1.1); }
+.yt > .vtag, .yt > .vt, .yt > .vd, .yt > .vgo { margin-inline: 14px; }
+.yt .vtag { align-self: flex-start; font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--c); background: var(--c-bg); padding: 2px 7px; border-radius: 6px; }
+.yt .vt { font-family: var(--display); font-weight: 700; font-size: 15.5px; line-height: 1.3; letter-spacing: -.015em; }
+.yt .vd { font-size: 13px; color: var(--text2); line-height: 1.45; }
+.yt .vgo { margin-top: auto; padding-top: 4px; font-size: 12.5px; font-weight: 700; color: var(--teal-dark); align-self: flex-start; }
+
+/* Experience: highlight rows, collapse, count-up */
+.theme li { padding: 8px 10px; margin-inline: -10px; border-radius: 12px; transition: background .2s var(--ease); }
+.theme li b { transition: transform .25s var(--ease), color .2s var(--ease); display: inline-block; }
+@media (hover: hover) { .theme li:hover { background: var(--teal-mist); } .theme li:hover b { transform: translateY(-2px); color: var(--teal-deep); } }
+.theme li:active { background: var(--teal-mist); }
+.job:not(.open) .theme li:nth-child(n+2) { display: none; }
+.job.open .theme li { animation: jin .3s var(--ease); }
+@keyframes jin { from { opacity: 0; transform: translateY(-4px); } }
+.jtoggle { margin-top: 12px; display: inline-flex; align-items: center; gap: 6px; font: 600 12.5px var(--sans); color: var(--teal-dark); background: var(--teal-mist); border: 1px solid var(--border); border-radius: 99px; padding: 7px 13px; cursor: pointer; }
+.jtoggle::before { content: "▸"; transition: transform .2s var(--ease); }
+.jtoggle[aria-expanded="true"]::before { transform: rotate(90deg); }
+.jtoggle:hover { border-color: var(--teal); }
+
+/* AI labels, NDA line, post lists, Beyond work */
+.aichip { display: inline-flex; align-items: center; font: 600 10px var(--mono); letter-spacing: .06em; text-transform: uppercase; padding: 2px 7px; border-radius: 99px; background: rgba(255,255,255,.2); color: #fff; border: 1px solid rgba(255,255,255,.45); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.aichip.on-img { position: absolute; right: 8px; bottom: 8px; z-index: 2; background: rgba(10,15,30,.55); border-color: rgba(255,255,255,.35); }
+.vid figcaption .aichip { margin-left: 2px; }
+.ainote { font-size: 12.5px; color: var(--text3); }
+.nda { margin-top: 10px; font-size: 13px; color: var(--text2); background: var(--teal-mist); border: 1px solid var(--border); border-radius: 10px; padding: 8px 12px; }
+.plists { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 16px; }
+@media (min-width: 820px) { .plists { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; } }
+.plist { border: 1px solid var(--border2); border-radius: var(--r-lg); padding: 16px; }
+.plist h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+.plist ul { list-style: none; margin: 0; padding: 0; display: grid; }
+.plist li { display: flex; align-items: baseline; gap: 8px; border-top: 1px solid var(--border2); }
+.plist li:first-child { border-top: 0; }
+.plist li > a:first-child { flex: 1; min-width: 0; display: grid; gap: 1px; padding: 9px 0; color: var(--text); }
+.plist li > a:first-child:hover { text-decoration: none; }
+.plist li > a:first-child:hover .lt { color: var(--teal-dark); text-decoration: underline; text-underline-offset: 3px; }
+.plist .lt { font-size: 14px; font-weight: 600; line-height: 1.35; }
+.plist .ld { font-size: 12px; color: var(--text3); }
+.plist .lb { font-size: 12px; font-weight: 600; white-space: nowrap; }
+.ptoggle { margin-top: 8px; display: inline-flex; align-items: center; gap: 6px; font: 600 12.5px var(--sans); color: var(--teal-dark); background: var(--teal-mist); border: 1px solid var(--border); border-radius: 99px; padding: 6px 12px; cursor: pointer; }
+.ptoggle::before { content: "▸"; transition: transform .2s var(--ease); }
+.ptoggle[aria-expanded="true"]::before { transform: rotate(90deg); }
+.ptoggle:hover { border-color: var(--teal); }
+.beyond { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+@media (min-width: 760px) { .beyond { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 1080px) { .beyond { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.bcard { display: flex; flex-direction: column; border: 1px solid var(--border2); border-radius: var(--r-lg); overflow: hidden; background: #fff; color: var(--text); min-width: 0; }
+.bcard.link { transition: transform .22s var(--ease), border-color .22s var(--ease), box-shadow .22s var(--ease); }
+.bcard.link:hover { text-decoration: none; color: var(--text); transform: translateY(-3px); border-color: var(--teal); box-shadow: var(--shadow-up); }
+.bimg { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: linear-gradient(135deg, var(--teal-dark), var(--indigo)); display: grid; place-items: center; color: #fff; }
+.bimg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.bimg.plain svg { width: 40px; height: 40px; }
+.bimg .play { position: relative; z-index: 1; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: rgba(10,15,30,.72); }
+.bimg .play svg { width: 18px; height: 18px; margin-left: 3px; }
+.bbody { padding: 10px 12px 12px; display: grid; gap: 4px; }
+.btag { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--teal-dark); }
+.bbody h3 { font-size: .95rem; font-weight: 700; line-height: 1.3; }
+.bgo { font-size: 12px; font-weight: 600; color: var(--teal-dark); }
+
+/* Frameworks: black band */
+.fwband { background: #05070B; border-radius: var(--r-xl); padding: 22px 18px; position: relative; overflow: hidden; }
+@media (min-width: 768px) { .fwband { padding: 36px; } }
+.fwband::before { content: ""; position: absolute; top: -120px; right: -120px; width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(6,182,212,.18), transparent 70%); pointer-events: none; }
+.fwband > * { position: relative; }
+.fwgrid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+@media (min-width: 760px) { .fwgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; } }
+.fw { margin: 0; border-radius: var(--r-lg); background: #000; border: 1px solid rgba(255,255,255,.1); padding: 12px; display: grid; gap: 10px; }
+.fw.light { background: #fff; }
+.fw img { width: 100%; height: auto; display: block; border-radius: 10px; }
+.fw figcaption { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--teal-light); }
+.fw.light figcaption { color: var(--teal-deep); }
+
 /* Writing: small cards */
 .posts { display: grid; grid-template-columns: 1fr; gap: 10px; }
 @media (min-width: 600px) { .posts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -303,7 +413,13 @@ section { padding-block: 22px 0; scroll-margin-top: 70px; }
 .post { --c: var(--teal-deep); --c-bg: var(--teal-mist); position: relative; display: flex; flex-direction: column; gap: 6px; border: 1px solid var(--border2); cursor: pointer; border-radius: var(--r-lg); padding: 0 0 14px; overflow: hidden; background: #fff; color: var(--text); min-width: 0; transition: transform .22s var(--ease), border-color .22s var(--ease), box-shadow .22s var(--ease); }
 .post:hover { text-decoration: none; color: var(--text); border-color: var(--c); box-shadow: var(--shadow-up); transform: translateY(-2px); }
 .post .top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
-.post > .top, .post > .t, .post > .d, .post > .go { margin-inline: 16px; }
+.post > .top, .post > .t, .post > .sm, .post > .d, .post > .go { margin-inline: 16px; }
+.post > .also { margin-inline: 16px; position: relative; z-index: 2; font-size: 12px; font-weight: 600; color: var(--teal-dark); }
+.post a.main { position: static; text-decoration: none; }
+.post a.main::after { content: ""; position: absolute; inset: 0; z-index: 1; border-radius: inherit; }
+.post .lic.blog { background: var(--teal-dark); }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.post:focus-within { border-color: var(--c); box-shadow: var(--shadow-up); }
 .post .thumb { position: relative; aspect-ratio: 16 / 6; margin-bottom: 8px; overflow: hidden; background: linear-gradient(135deg, var(--c), var(--c-bg)); display: grid; place-items: center; }
 .post .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .4s var(--ease); }
 .post:hover .thumb img, .post:hover .thumb svg { transform: scale(1.04); }
@@ -319,7 +435,8 @@ section { padding-block: 22px 0; scroll-margin-top: 70px; }
 .c4 { --c: var(--amber); --c-bg: var(--amber-bg); } .c5 { --c: var(--violet); --c-bg: var(--violet-bg); } .c6 { --c: var(--coral); --c-bg: var(--coral-bg); }
 .post .ar { color: var(--text3); font-size: 14px; transition: color .2s; }
 .post:hover .ar { color: var(--teal); }
-.post .t { font-weight: 600; font-size: 14.5px; line-height: 1.38; }
+.post .t { font-family: var(--display); font-weight: 700; font-size: 16px; line-height: 1.3; letter-spacing: -.015em; }
+.post .sm { font-size: 13px; color: var(--text2); line-height: 1.45; }
 .post .d { font-size: 12px; color: var(--text3); }
 .more { display: flex; justify-content: center; margin-top: 14px; }
 
@@ -377,7 +494,7 @@ footer { text-align: center; color: var(--text3); font-size: 12px; padding-block
   <div class="wrap">
     <a class="logo" href="#top">Varsha<span>.</span></a>
     <div class="nav-links">
-      <a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#writing">Writing</a><a href="#projects">Projects</a>
+      <a href="#inside">At work</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#frameworks">Frameworks</a><a href="#writing">Writing</a><a href="#videos">Videos</a><a href="#projects">Projects</a><a href="#beyond">Beyond work</a>
     </div>
     <a class="btn btn-primary btn-sm" href="#contact">Contact</a>
   </div>
@@ -393,7 +510,7 @@ footer { text-align: center; color: var(--text3); font-size: 12px; padding-block
       </div>
       <h1>Varsha Shah</h1>
       <p class="role">Trust, identity and AI risk platforms at global scale</p>
-      <p class="bio">Product leader with 10+ years in fraud prevention, identity and global compliance at PayPal and Visa. I take risk platforms from 0 to 1 and rebuild legacy rule engines as AI-native workflows. That work has protected 500M+ users and delivered $100M+ in revenue with 25 bps less fraud.</p>
+      <p class="bio">Product leader with 10+ years in fraud prevention, identity and global compliance at PayPal and Visa. I take risk platforms from 0 to 1 and rebuild legacy rule engines as AI-native workflows. My platforms have protected 500M+ users across 1B+ devices.</p>
       <div class="actions">
         <a class="btn btn-li" href="https://www.linkedin.com/in/varsha-shah-usa" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.2c0-1.24-.02-2.84-1.73-2.84-1.73 0-2 1.35-2 2.75V21h-4z"/></svg>Connect on LinkedIn</a>
         <a class="btn btn-ghost" href="#contact">Get in touch</a>
@@ -404,7 +521,7 @@ footer { text-align: center; color: var(--text3); font-size: 12px; padding-block
       <figure class="vid">
         <video id="pv" src="profile.mp4" poster="profile-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Video introduction from Varsha"></video>
         <figcaption>
-          <span class="live-dot"></span><span>Meet Varsha</span>
+          <span class="live-dot"></span><span>Meet Varsha</span><span class="aichip">AI-generated</span>
           <button class="vbtn" id="snd" type="button" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4z"/><path id="sndWave" d="M23 9l-6 6M17 9l6 6"/></svg><span id="sndLabel">Sound off</span></button>
         </figcaption>
       </figure>
@@ -418,13 +535,44 @@ footer { text-align: center; color: var(--text3); font-size: 12px; padding-block
   </header>
 
   <div class="band" aria-label="Career highlights">
-    <div class="stat s1"><b>$100M+</b><span>revenue from the Integrated Risk Platform</span></div>
-    <div class="stat s2"><b>500M+</b><span>users protected</span></div>
-    <div class="stat s3"><b>1B+</b><span>devices in the identity graph</span></div>
-    <div class="stat s4"><b>$50M+/mo</b><span>saved with GenAI case management</span></div>
-    <div class="stat s5"><b>50</b><span>countries of KYC/KYB compliance</span></div>
-    <div class="stat s6"><b>367</b><span>people trained in agentic AI</span></div>
+    <div class="stat s1"><b>500M+</b><span>users protected</span></div>
+    <div class="stat s2"><b>1B+</b><span>devices in the identity graph</span></div>
+    <div class="stat s3"><b>$91B+</b><span>payment volume under risk governance</span></div>
+    <div class="stat s4"><b>$84M</b><span>EU scam liability mitigated</span></div>
+    <div class="stat s5"><b>$1B+</b><span>PYUSD cap scaled at low loss</span></div>
+    <div class="stat s6"><b>50</b><span>countries of KYC/KYB compliance</span></div>
   </div>
+
+  <!-- Inside my work -->
+  <section id="inside" aria-labelledby="inside-h">
+    <div class="card">
+      <div class="sec-row sec-head">
+        <div style="display:grid;gap:6px"><span class="label">Varsha at work</span><h2 id="inside-h">Fraud, identity and teams</h2><p class="ainote">Illustrations are AI-generated.</p></div>
+        <div class="cctl">
+          <button class="cbtn" id="cPrev" type="button" aria-label="Previous moment"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <button class="cbtn" id="cPlay" type="button" aria-label="Pause autoplay"></button>
+          <button class="cbtn" id="cNext" type="button" aria-label="Next moment"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+        </div>
+      </div>
+      <div class="carousel" id="carousel" role="region" aria-roledescription="carousel" aria-label="Varsha at work" tabindex="0">
+        <article class="mcard t3" aria-roledescription="slide" aria-label="1 of 3">
+          <div class="mimg"><img src="avatar.jpg" alt="AI-generated avatar of Varsha at a holographic fraud console" loading="lazy" style="object-position:50% 8%"><span class="mtag">Fraud · checkout</span><span class="aichip on-img">AI</span></div>
+          <div class="mbody"><h3>Scoring an agent checkout</h3><p>Five risk signals, one decision: approve, decline or step up.</p>
+            <div class="mpills"><i class="p">velocity</i><i class="p">cart</i><i class="f">payment</i><i class="p">shipping</i><i class="f">behavior</i></div></div>
+        </article>
+        <article class="mcard t4" aria-roledescription="slide" aria-label="2 of 3">
+          <div class="mimg"><img src="w4-monitor.jpg" alt="AI-generated avatar of Varsha monitoring live identity signals" loading="lazy"><span class="mtag">Identity · live</span><span class="aichip on-img">AI</span></div>
+          <div class="mbody"><h3>Live identity signals</h3><p>Linking devices to accounts to catch account farms early.</p>
+            <div class="mnote">1 shared device · 4 accounts → farm signal</div></div>
+        </article>
+        <article class="mcard t6" aria-roledescription="slide" aria-label="3 of 3">
+          <div class="mimg"><img src="w6-integ.jpg" alt="AI-generated avatars of Varsha and a teammate integrating two systems" loading="lazy"><span class="mtag">Teams · integration</span><span class="aichip on-img">AI</span></div>
+          <div class="mbody"><h3>Systems integration</h3><p>Engineering, legal and risk aligned before the release ships.</p></div>
+        </article>
+      </div>
+      <div class="dots" id="cDots" role="group" aria-label="Choose a moment"></div>
+    </div>
+  </section>
 
   <!-- Experience -->
   <section id="experience" aria-labelledby="exp-h">
@@ -432,19 +580,21 @@ footer { text-align: center; color: var(--text3); font-size: 12px; padding-block
       <div class="sec-head"><span class="label">Experience</span><h2 id="exp-h">Twelve years at PayPal, now at Visa</h2></div>
       <div class="jobs">
         <article class="job">
-          <div class="job-head"><h3>Visa</h3><span class="d">2024 – Present · Foster City, CA</span><span class="t">Principal Technical Product Manager (L8), AI Platform &amp; Integrated Risk Platform</span></div>
+          <div class="job-head"><h3>Visa</h3><span class="d">2024 – Present · Foster City, CA</span><span class="t">Principal Technical Product Manager, AI platform and integrated risk</span></div>
+          <p class="nda">Specific Visa results are confidential. I'm happy to discuss them in conversation.</p>
           <div class="themes">
-            <div class="theme"><h4>AI platform &amp; IRP</h4><ul>
-              <li><b>$50M+/mo</b><span><strong>Case management turnaround.</strong> Unblocked a migration stalled for over a year in 8 weeks for 300+ tier-1 banks and 6M cases a month. GenAI cut manual handling 50%+.</span></li>
-              <li><b>0 → 1</b><span><strong>Multi-agent merchant risk.</strong> Agentic fraud engine with dynamic LLM rules across Visa Acceptance, Fraud Essentials, Shopify and Visa TAP + Stripe.</span></li>
-              <li><b>6M/day</b><span><strong>AI-native bank experience.</strong> Four reporting systems merged into one platform with tokenization-to-post-auth visibility for 11 banks.</span></li>
+            <div class="theme"><h4>AI platform &amp; integrated risk</h4><ul>
+              <li><b>GenAI</b><span><strong>Case management.</strong> Bringing GenAI into dispute and case workflows so analysts spend less time on manual review.</span></li>
+              <li><b>Agentic</b><span><strong>Merchant risk.</strong> Shaping agentic fraud detection with LLM-driven rules, from zero to one.</span></li>
+              <li><b>Platform</b><span><strong>Unified risk experience.</strong> One AI-native view of risk across the card lifecycle, from tokenization to post-authorization.</span></li>
             </ul></div>
             <div class="theme"><h4>Productization &amp; governance</h4><ul>
-              <li><b>$12M+/yr</b><span><strong>COGS compression.</strong> Decision Manager's rules engine (300K transactions a day) moved to multi-tenant Valkey. Set enterprise LLM guardrails.</span></li>
-              <li><b>4 months</b><span><strong>Visa Card Insights.</strong> ML research commercialized as a 1st/3rd-party fraud API, with models embedded in Authorize.Net.</span></li>
-              <li><b>367</b><span><strong>AI velocity.</strong> Trained PMs, data scientists and analysts on Claude, MCP and prototyping. 10+ prototypes won Board and EVP funding.</span></li>
+              <li><b>Modernize</b><span><strong>Rules infrastructure.</strong> Moving risk rules onto multi-tenant, cost-efficient architecture, with clear LLM guardrails.</span></li>
+              <li><b>Productize</b><span><strong>Data science to product.</strong> Turning fraud models and research into products and APIs customers can use.</span></li>
+              <li><b>Enable</b><span><strong>AI adoption.</strong> Helping PMs, data scientists and analysts work with Claude, MCP and rapid prototyping.</span></li>
             </ul></div>
           </div>
+          <button class="jtoggle" type="button" aria-expanded="false">See all results</button>
         </article>
         <article class="job">
           <div class="job-head"><h3>PayPal</h3><span class="d">2012 – 2024 · San Jose, CA</span><span class="t">Group Product Manager, Crypto Risk, Scam &amp; Identity Platforms</span></div>
@@ -452,16 +602,17 @@ footer { text-align: center; color: var(--text3); font-size: 12px; padding-block
             <div class="theme"><h4>Identity, scams &amp; regulation</h4><ul>
               <li><b>$40M/yr</b><span><strong>Identity graph.</strong> 1B+ devices, combining fingerprinting with keystroke and mouse biometrics.</span></li>
               <li><b>$84M</b><span><strong>EU PSR/PSD3.</strong> LLM engine trained on dispute data intercepts scam payments before settlement.</span></li>
-              <li><b>GDPR</b><span><strong>Visa EU P2P policy gate.</strong> Value caps and consent filters shipped with Legal to a hard contract deadline.</span></li>
+              <li><b>GDPR</b><span><strong>EU P2P policy gate.</strong> Value caps and consent filters shipped with Legal to a hard contract deadline.</span></li>
               <li><b>$50M+</b><span><strong>GenAI scam automation.</strong> LLM categorization and NLP phishing classifiers across P2P, Invoicing and Crypto.</span></li>
             </ul></div>
             <div class="theme"><h4>Crypto, cards &amp; portfolio</h4><ul>
-              <li><b>$300M+</b><span><strong>PYUSD and crypto.</strong> Real-time risk, Travel Rule and wallet-drain controls at record-low loss bps.</span></li>
+              <li><b>$1B+</b><span><strong>PYUSD and crypto.</strong> Real-time risk, Travel Rule and wallet-drain controls at record-low loss bps.</span></li>
               <li><b>3DS</b><span><strong>PayPal &amp; Venmo cards.</strong> Tokenization risk and dynamic 3DS cut card-not-present fraud and kept approval rates high.</span></li>
               <li><b>$4B</b><span><strong>ACH representment.</strong> Open-banking retries that avoid NSF fees under CFPB UDAAP and NACHA.</span></li>
               <li><b>$91B+</b><span><strong>Group risk.</strong> Led 6 PMs and 40+ releases a quarter, with KYC engines in 50 countries.</span></li>
             </ul></div>
           </div>
+          <button class="jtoggle" type="button" aria-expanded="false">See all results</button>
         </article>
       </div>
       <div class="how">
@@ -480,12 +631,12 @@ footer { text-align: center; color: var(--text3); font-size: 12px; padding-block
     <div class="card">
       <div class="sec-head"><span class="label">Skills</span><h2 id="skills-h">What I work on</h2><p>Areas of expertise.</p></div>
       <div class="skills">
-        <div class="skill k1"><h3>Identity &amp; authentication</h3><div class="chips"><span class="chip">Device graphs</span><span class="chip">Behavioral biometrics</span><span class="chip">Tokenization</span><span class="chip">3DS</span><span class="chip">CIP / KYC / KYB</span></div></div>
-        <div class="skill k2"><h3>Fraud &amp; abuse</h3><div class="chips"><span class="chip">Scam &amp; APP fraud</span><span class="chip">Bot &amp; agent detection</span><span class="chip">Card-not-present</span><span class="chip">Case management</span><span class="chip">Disputes</span></div></div>
-        <div class="skill k3"><h3>Risk engines</h3><div class="chips"><span class="chip">ML &amp; rule engines</span><span class="chip">Dynamic LLM rules</span><span class="chip">Decision Manager</span><span class="chip">Multi-tenant Valkey</span><span class="chip">COGS compression</span></div></div>
-        <div class="skill k4"><h3>Regulation &amp; privacy</h3><div class="chips"><span class="chip">GDPR</span><span class="chip">PSD3 / PSR</span><span class="chip">Travel Rule</span><span class="chip">VIDA</span><span class="chip">MAS</span><span class="chip">CFPB / NACHA</span><span class="chip">PIPL · RBI</span></div></div>
-        <div class="skill k5"><h3>AI &amp; agentic systems</h3><div class="chips"><span class="chip">Multi-agent orchestration</span><span class="chip">Claude</span><span class="chip">Astra</span><span class="chip">MCP</span><span class="chip">LLM guardrails</span><span class="chip">Rapid prototyping</span></div></div>
-        <div class="skill k6"><h3>Leadership</h3><div class="chips"><span class="chip">0-to-1 products</span><span class="chip">Matrixed influence</span><span class="chip">Led 6 PMs</span><span class="chip">Exec storytelling</span><span class="chip">REST APIs</span><span class="chip">PYUSD</span></div></div>
+        <div class="skill k1"><span class="sglare" aria-hidden="true"></span><h3><span class="sic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 11c0 3-1 6-3 8"/><path d="M8 7.5A5 5 0 0 1 17 11c0 2-.3 4-1 6"/><path d="M5 10a7 7 0 0 1 13-3.5"/><path d="M12 15c-.3 2-1 3.5-2 5"/><path d="M15.5 13.5c-.2 2.5-.8 4.5-1.8 6.5"/></svg></span>Identity &amp; authentication</h3><div class="chips"><span class="chip">Device graphs</span><span class="chip">Behavioral biometrics</span><span class="chip">Tokenization</span><span class="chip">3DS</span><span class="chip">CIP / KYC / KYB</span></div><details class="sx"><summary>See examples <span>3</span></summary><ul><li><b>$40M/yr</b> fraud cut with a 1B+ device identity graph and behavioral biometrics (PayPal)</li><li><b>Dynamic 3DS</b> and tokenization risk for PayPal and Venmo cards</li></ul><div class="sxl"><a href="#p-agentic">Project: Agentic Commerce Fraud Demo →</a></div></details></div>
+        <div class="skill k2"><span class="sglare" aria-hidden="true"></span><h3><span class="sic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></span>Fraud &amp; abuse</h3><div class="chips"><span class="chip">Scam &amp; APP fraud</span><span class="chip">Bot &amp; agent detection</span><span class="chip">Card-not-present</span><span class="chip">Case management</span><span class="chip">Disputes</span></div><details class="sx"><summary>See examples <span>4</span></summary><ul><li><b>$84M</b> EU scam liability mitigated with a real-time LLM intervention engine (PayPal)</li><li><b>$50M+</b> scam losses cut with GenAI scam and phishing classifiers (PayPal)</li></ul><div class="sxl"><a href="#p-agentic">Project: Agentic Commerce Fraud Demo →</a><a href="#frameworks">Framework: fraud &amp; disputes landscape →</a></div></details></div>
+        <div class="skill k3"><span class="sglare" aria-hidden="true"></span><h3><span class="sic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></span>Risk engines</h3><div class="chips"><span class="chip">ML &amp; rule engines</span><span class="chip">Dynamic LLM rules</span><span class="chip">Rules engine modernization</span><span class="chip">Multi-tenant platforms</span><span class="chip">Cost optimization</span></div><details class="sx"><summary>See examples <span>3</span></summary><ul><li><b>Agentic</b> fraud detection with LLM-driven rules (Visa)</li><li><b>$4B</b> ACH volume enabled by open-banking representment (PayPal)</li></ul><div class="sxl"><a data-li="7477330042289684480" target="_blank" rel="noopener">Post: AI doesn’t just scale productivity. It scales patterns. ↗</a></div></details></div>
+        <div class="skill k4"><span class="sglare" aria-hidden="true"></span><h3><span class="sic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M5 21h14"/><path d="M6 7h12"/><path d="M6 7l-3 7a3 3 0 0 0 6 0zM18 7l-3 7a3 3 0 0 0 6 0z"/></svg></span>Regulation &amp; privacy</h3><div class="chips"><span class="chip">GDPR</span><span class="chip">PSD3 / PSR</span><span class="chip">Travel Rule</span><span class="chip">VIDA</span><span class="chip">MAS</span><span class="chip">CFPB / NACHA</span><span class="chip">PIPL · RBI</span></div><details class="sx"><summary>See examples <span>4</span></summary><ul><li><b>GDPR</b> policy gate shipped to a hard contract deadline (PayPal)</li><li><b>50 countries</b> of KYC/KYB, plus PIPL and RBI data localization (PayPal)</li></ul><div class="sxl"><a href="#p-wiki">Project: llm-wiki for legacy AML →</a><a data-li="7189787730162208768" target="_blank" rel="noopener">Post: EU AI Act breakdown for data scientists ↗</a></div></details></div>
+        <div class="skill k5"><span class="sglare" aria-hidden="true"></span><h3><span class="sic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></span>AI &amp; agentic systems</h3><div class="chips"><span class="chip">Multi-agent orchestration</span><span class="chip">Claude</span><span class="chip">MCP</span><span class="chip">LLM guardrails</span><span class="chip">Rapid prototyping</span></div><details class="sx"><summary>See examples <span>4</span></summary><ul><li><b>Teaching</b> PMs, data scientists and analysts to prototype with Claude and MCP (Visa)</li><li><b>8 live prototypes</b> built and shipped on my own time</li></ul><div class="sxl"><a href="#p-wiki">Project: llm-wiki →</a><a data-li="7470474873518268416" target="_blank" rel="noopener">Post: The AI-native migration playbook ↗</a></div></details></div>
+        <div class="skill k6"><span class="sglare" aria-hidden="true"></span><h3><span class="sic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 20c0-2.5 1.5-4.6 3.5-5.5 1.6.7 2.5 2.4 2.5 5.5"/></svg></span>Leadership</h3><div class="chips"><span class="chip">0-to-1 products</span><span class="chip">Matrixed influence</span><span class="chip">Led 6 PMs</span><span class="chip">Exec storytelling</span><span class="chip">REST APIs</span><span class="chip">PYUSD</span></div><details class="sx"><summary>See examples <span>3</span></summary><ul><li><b>6 PMs</b> led, 40+ releases a quarter, $91B+ volume (PayPal)</li><li><b>Cross-team</b> alignment across issuer risk, merchant risk, analytics and case management (Visa)</li></ul><div class="sxl"><a href="#experience">How I work →</a></div></details></div>
       </div>
       <div class="awards">
         <div class="award"><b>2×</b><span><strong>"Outstanding" rating</strong>Visa's top performance rating</span></div>
@@ -495,57 +646,34 @@ footer { text-align: center; color: var(--text3); font-size: 12px; padding-block
     </div>
   </section>
 
-  <!-- Writing -->
-  <section id="writing" aria-labelledby="writing-h">
-    <div class="card">
-      <div class="sec-head"><span class="label">Writing</span><h2 id="writing-h">LinkedIn posts</h2><p>Every card opens the post on LinkedIn. Filter by topic.</p></div>
-      <div class="filters" role="group" aria-label="Filter posts by topic" id="postFilters"></div>
-      <div class="posts" id="postGrid"></div>
-      <div class="more"><button class="btn btn-ghost btn-sm" id="morePosts" type="button"></button></div>
+  <!-- Frameworks -->
+  <section id="frameworks" aria-labelledby="fw-h">
+    <div class="fwband">
+      <div class="sec-head"><span class="label" style="color:var(--teal-light)">Frameworks</span><h2 id="fw-h" style="color:#fff">How I map fraud</h2><p class="ainote" style="color:#9CA3AF">Diagrams drafted with Napkin AI.</p></div>
+      <div class="fwgrid">
+        <figure class="fw"><img src="fw/landscape.png" alt="Fraud and disputes landscape: Fraud.Net, Signifyd, Ethoca, PayPal, Chargeflow, Stripe Radar, Kount and Mastercard" loading="lazy"><figcaption>Competitors on my radar</figcaption></figure>
+        <figure class="fw"><img src="fw/insight-layers.png" alt="Layers of merchant fraud insight: fraud trends, transaction anomalies, chargebacks and refunds, customer behavior, comparative performance" loading="lazy"><figcaption>Layers of merchant insight</figcaption></figure>
+      </div>
     </div>
   </section>
 
-  <!-- Inside my work -->
-  <section id="inside" aria-labelledby="inside-h">
+  <!-- Writing -->
+  <section id="writing" aria-labelledby="writing-h">
     <div class="card">
-      <div class="sec-row sec-head">
-        <div style="display:grid;gap:6px"><span class="label">Varsha at work</span><h2 id="inside-h">A day across fraud, identity, AI and teams</h2></div>
-        <div class="cctl">
-          <button class="cbtn" id="cPrev" type="button" aria-label="Previous moment"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
-          <button class="cbtn" id="cPlay" type="button" aria-label="Pause autoplay"></button>
-          <button class="cbtn" id="cNext" type="button" aria-label="Next moment"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
-        </div>
+      <div class="sec-head"><span class="label">Writing</span><h2 id="writing-h">Posts and articles</h2><p>Agentic AI, compliance and fraud, from LinkedIn and my blog, <a href="https://varsha-shah-ai.blogspot.com/" target="_blank" rel="noopener">ShAI Stories</a>.</p></div>
+      <div class="posts" id="postGrid"></div>
+      <div class="plists">
+        <div class="plist"><h3>More on compliance &amp; regulation</h3><ul id="listCompliance"></ul></div>
+        <div class="plist"><h3>Earlier posts</h3><ul id="listEarlier"></ul><button class="ptoggle" id="earlierToggle" type="button" aria-expanded="false" aria-controls="listEarlier"></button></div>
       </div>
-      <div class="carousel" id="carousel" role="region" aria-roledescription="carousel" aria-label="Varsha at work" tabindex="0">
-        <article class="mcard t1" aria-roledescription="slide" aria-label="1 of 6">
-          <div class="mimg"><img src="w1-swim.jpg" alt="Anime avatar of Varsha swimming laps in an outdoor pool" loading="lazy"><span class="mtag">Recharge</span></div>
-          <div class="mbody"><h3>Laps before the day starts</h3><p>Clear head, steady pace.</p></div>
-        </article>
-        <article class="mcard t2" aria-roledescription="slide" aria-label="2 of 6">
-          <div class="mimg"><img src="w2-run.jpg" alt="Anime avatar of Varsha running across a hill at sunrise" loading="lazy"><span class="mtag">Momentum</span></div>
-          <div class="mbody"><h3>Out the door and moving</h3><p>Energy for the problems that matter.</p></div>
-        </article>
-        <article class="mcard t3" aria-roledescription="slide" aria-label="3 of 6">
-          <div class="mimg"><img src="w3-fraud.jpg" alt="Anime avatar of Varsha leading a global fraud detection command center" loading="lazy"><span class="mtag">Fraud · global</span></div>
-          <div class="mbody"><h3>Global fraud detection</h3><p>Scoring checkouts on velocity, cart, payment, shipping and behavior.</p>
-            <div class="mpills"><i class="p">velocity</i><i class="p">cart</i><i class="f">payment</i><i class="p">shipping</i><i class="f">behavior</i></div></div>
-        </article>
-        <article class="mcard t4" aria-roledescription="slide" aria-label="4 of 6">
-          <div class="mimg"><img src="w4-monitor.jpg" alt="Anime avatar of Varsha monitoring live identity signals on holographic screens" loading="lazy"><span class="mtag">Identity · live</span></div>
-          <div class="mbody"><h3>Live identity signals</h3><p>Linking devices to accounts to catch account farms early.</p>
-            <div class="mnote">1 shared device · 4 accounts → farm signal</div></div>
-        </article>
-        <article class="mcard t5" aria-roledescription="slide" aria-label="5 of 6">
-          <div class="mimg"><img src="w5-modules.jpg" alt="Anime avatar of Varsha configuring customisable AI modules" loading="lazy"><span class="mtag">AI · prototyping</span></div>
-          <div class="mbody"><h3>Customisable AI modules</h3><p>Prototyping agentic fraud rules with Claude.</p>
-            <div class="mnote">3 agents · 12 dynamic rules · demo-ready</div></div>
-        </article>
-        <article class="mcard t6" aria-roledescription="slide" aria-label="6 of 6">
-          <div class="mimg"><img src="w6-integ.jpg" alt="Anime avatars of Varsha and a teammate integrating two systems" loading="lazy"><span class="mtag">Teams · integration</span></div>
-          <div class="mbody"><h3>Systems integration</h3><p>Engineering, legal and risk aligned before the release ships.</p></div>
-        </article>
-      </div>
-      <div class="dots" id="cDots" role="group" aria-label="Choose a moment"></div>
+    </div>
+  </section>
+
+  <!-- Videos -->
+  <section id="videos" aria-labelledby="vid-h">
+    <div class="card">
+      <div class="sec-head"><span class="label">Fun projects</span><h2 id="vid-h">Videos I've made</h2><p>Short AI-made explainers on payments, crypto and fraud. Tap to play here, or open on YouTube.</p></div>
+      <div class="yts" id="ytGrid"></div>
     </div>
   </section>
 
@@ -554,6 +682,22 @@ footer { text-align: center; color: var(--text3); font-size: 12px; padding-block
     <div class="card">
       <div class="sec-head"><span class="label">Personal projects</span><h2 id="projects-h">Things I build to stay hands-on</h2><p>Side projects, all live. Flip a card to see its architecture.</p></div>
       <div class="projects" id="projectGrid"></div>
+    </div>
+  </section>
+
+  <!-- Beyond work -->
+  <section id="beyond" aria-labelledby="beyond-h">
+    <div class="card">
+      <div class="sec-head"><span class="label">Beyond work</span><h2 id="beyond-h">Off the clock</h2><p class="ainote">Avatar illustrations and videos are AI-generated.</p></div>
+      <div class="beyond">
+        <div class="bcard"><div class="bimg"><img src="w0-meditate.jpg" alt="AI-generated avatar of Varsha meditating by the water" loading="lazy"><span class="aichip on-img">AI</span></div><div class="bbody"><span class="btag">Focus</span><h3>Inner peace as the day starts</h3></div></div>
+        <div class="bcard"><div class="bimg"><img src="w1-swim.jpg" alt="AI-generated avatar of Varsha swimming laps" loading="lazy"><span class="aichip on-img">AI</span></div><div class="bbody"><span class="btag">Recharge</span><h3>Laps before the day starts</h3></div></div>
+        <div class="bcard"><div class="bimg"><img src="w2-run.jpg" alt="AI-generated avatar of Varsha running at sunrise" loading="lazy"><span class="aichip on-img">AI</span></div><div class="bbody"><span class="btag">Momentum</span><h3>Out the door and moving</h3></div></div>
+        <a class="bcard link" id="bDog" target="_blank" rel="noopener"><div class="bimg"><img src="li/2026-06-03.jpg" alt="Varsha's dog asleep on the sofa" loading="lazy" style="object-position:12% 50%"></div><div class="bbody"><span class="btag">Home</span><h3>Home with my dog</h3><span class="bgo">On LinkedIn ↗</span></div></a>
+        <a class="bcard link" href="https://www.youtube.com/watch?v=idkiLiQr6Gc" target="_blank" rel="noopener"><div class="bimg yt"><img src="yt/idkiLiQr6Gc.jpg" alt="" loading="lazy" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://i.ytimg.com/vi/idkiLiQr6Gc/hqdefault.jpg'}else{this.remove()}"><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="aichip on-img">AI</span></div><div class="bbody"><span class="btag">Just for fun</span><h3>Merry Christmas card</h3><span class="bgo">Watch on YouTube ↗</span></div></a>
+        <a class="bcard link" href="https://varsha-shah-ai.blogspot.com/2024/04/hindu-gods-and-goddesses-kaiberai.html" target="_blank" rel="noopener"><div class="bimg plain"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c2 3 2 6 0 9-2-3-2-6 0-9z"/><path d="M5 21h14M7 21c0-4 2-7 5-7s5 3 5 7"/></svg><span class="aichip on-img">AI</span></div><div class="bbody"><span class="btag">Culture</span><h3>AI video shorts: Hindu gods and goddesses</h3><span class="bgo">On my blog ↗</span></div></a>
+        <a class="bcard link" href="https://kodava-community.vercel.app" target="_blank" rel="noopener"><div class="bimg plain"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 20c0-2.5 1.5-4.6 3.5-5.5 1.6.7 2.5 2.4 2.5 5.5"/></svg></div><div class="bbody"><span class="btag">Community</span><h3>Kodava Community app</h3><span class="bgo">Launch ↗</span></div></a>
+      </div>
     </div>
   </section>
 
@@ -576,6 +720,7 @@ footer { text-align: center; color: var(--text3); font-size: 12px; padding-block
 <script>
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const LI = {
+"7442556028111564800": "https://www.linkedin.com/posts/varsha-shah-usa_visa-agenticabrcommerce-activity-7442556028111564800-c0qY",
 "7511772481733480448": "https://www.linkedin.com/posts/varsha-shah-usa_visa-claude-replit-activity-7511772481733480448-iNZD",
 "7488239467300954112": "https://www.linkedin.com/posts/varsha-shah-usa_paypal-visa-claude-activity-7488239467300954112-LN49",
 "7485710278178009088": "https://www.linkedin.com/posts/varsha-shah-usa_visa-paypal-anthropic-activity-7485710278178009088-7jBi",
@@ -605,27 +750,32 @@ const LI = {
 "7090741649613467649": "https://www.linkedin.com/posts/varsha-shah-usa_cryptocurrency-crypto-payments-ugcPost-7090741562921390080-W2zR/?highlightedUpdateUrn=urn%3Ali%3Aactivity%3A7090741649613467649&highlightedUpdateType=SOCIAL_SHARE&origin=SOCIAL_SHARE"
 };
 const POSTS = [
-  ["2026-10-02", "Visa, Claude and Replit", "AI in practice", "7511772481733480448"],
-  ["2026-07-29", "PayPal, Visa and Claude (July)", "AI in practice", "7488239467300954112"],
-  ["2026-07-22", "Visa, PayPal and Anthropic", "AI in practice", "7485710278178009088"],
-  ["2026-06-29", "AI doesn't just scale productivity, it scales…", "AI in practice", "7477330042289684480"],
-  ["2026-06-23", "Product management, the principal PM and enterprise AI", "Product leadership", "7475201096722849792"],
-  ["2026-06-17", "Product management, the principal PM and AI", "Product leadership", "7473041797057884160"],
-  ["2026-06-10", "Imagine a scenario… however, if you've worked…", "Product leadership", "7470474873518268416"],
-  ["2026-06-06", "Deals for you", "Payments & commerce", "7469040414109548545"],
-  ["2026-06-03", "PayPal, Visa and Claude (June)", "AI in practice", "7467953266384056321"],
-  ["2026-06-01", "Ever been on a second date where they remember…", "Product leadership", "7467228488622714880"],
-  ["2026-03-23", "Agentic payments", "Payments & commerce", "7441861330501890050"],
-  ["2025-07-14", "Week 2: evolution of Coach Raman's communication", "Build in public", "7350532093132619778"],
-  ["2025-07-02", "#BuildInPublic: dementia caregiving", "Build in public", "7346190947497451523"],
-  ["2024-05-13", "CFPB 1099, open banking and how they compare", "Responsible AI & regulation", "7195769798184611840"],
-  ["2024-05-07", "Vertex AI hallucination: Luna the elephant", "Responsible AI & regulation", "7193595473360732162"],
-  ["2024-05-06", "Different types of bias in models", "Responsible AI & regulation", "7193233076880089088"],
-  ["2024-05-02", "Stablecoin strategy to combat devaluation", "Crypto & stablecoins", "7191798613289672704"],
-  ["2024-04-29", "Copilot and the calming zen UX spinner", "AI in practice", "7190760466938294272"],
-  ["2024-04-27", "EU AI Act breakdown for data scientists", "Responsible AI & regulation", "7189787730162208768"],
-  ["2024-04-25", "The EU AI Act", "Responsible AI & regulation", "7189281027507310592"], 
-  ["2023-07-28", "Cryptocurrency and crypto payments", "Crypto & stablecoins", "7090741649613467649"]
+  ["2024-04-27", "UK PSR: mandatory reimbursement for scam victims", "Responsible AI & regulation", "b-psr", "What the UK rule making banks and payment firms reimburse scam victims means for fintechs.", "https://varsha-shah-ai.blogspot.com/2024/04/scam-new-payments-service-regulation-in.html"],
+  ["2024-04-27", "Crazy fraud story: fintech brand reputation risk", "Crypto & stablecoins", "b-fraudstory", "An AI-made story about crypto misuse in a criminal case, and how fintechs can protect their brand.", "https://varsha-shah-ai.blogspot.com/2024/04/crazy-fraud-story-fintechs-brand.html"],
+  ["2024-04-27", "ChatGPT as a SQL and database assistant", "AI in practice", "b-sql", "Generating schemas, SQL queries and Python code from a plain-English scenario.", "https://varsha-shah-ai.blogspot.com/2024/04/chatgpt-sql-and-database-assistant.html"],
+  ["2024-04-27", "Hindu gods and goddesses: AI video shorts with chants", "AI in practice", "b-kaiber", "Short devotional videos generated with Kaiber.AI.", "https://varsha-shah-ai.blogspot.com/2024/04/hindu-gods-and-goddesses-kaiberai.html"],
+  ["2026-10-02", "Visa, Claude and Replit", "AI in practice", "7511772481733480448", ""],
+  ["2026-07-29", "The AI moat: from reactive retention to proactive dependency", "AI in practice", "7488239467300954112", "Products that answer before customers ask stop being features and become infrastructure."],
+  ["2026-07-22", "Visa, PayPal and Anthropic", "AI in practice", "7485710278178009088", ""],
+  ["2026-06-29", "AI doesn't just scale productivity. It scales patterns.", "AI in practice", "7477330042289684480", "Fragmented processes, data and ownership get amplified. Standardize first, then let agents scale performance."],
+  ["2026-06-23", "Product management, the principal PM and enterprise AI", "Product leadership", "7475201096722849792", ""],
+  ["2026-06-17", "AI platform migration", "Product leadership", "7473041797057884160", "Moving AI, data and models onto a new platform."],
+  ["2026-06-10", "The AI-native migration playbook", "Product leadership", "7470474873518268416", "Build a \u201csecond brain\u201d to beat analysis paralysis: ingest the chaos, then synthesize and scale."],
+  ["2026-06-06", "Glam Mesh: glassmorphism, magnetic buttons and running borders", "Build in public", "7469040414109548545", "Building the UI of a social shopping app in public."],
+  ["2026-06-03", "PayPal, Visa and Claude (June)", "AI in practice", "7467953266384056321", ""],
+  ["2026-06-01", "Ever been on a second date where they remember…", "Product leadership", "7467228488622714880", ""],
+  ["2026-03-25", "While you were asleep, your AI agent booked the trip", "Payments & commerce", "7442556028111564800", "How mandates, agent identity, risk checks and instant settlement let an AI agent pay safely on your behalf."],
+  ["2026-03-23", "The agentic economy is here", "Payments & commerce", "7441861330501890050", "From insight to execution: the protocols and developer tools that make agentic payments live."],
+  ["2025-07-14", "Week 2: how Coach Raman's communication evolved", "Build in public", "7350532093132619778", "Building a dementia-care coach in public, one week at a time."],
+  ["2025-07-02", "#BuildInPublic: dementia caregiving", "Build in public", "7346190947497451523", "Building a coach for dementia caregivers, in public."],
+  ["2024-05-13", "CFPB 1033 open banking vs. PSD2", "Responsible AI & regulation", "7195769798184611840", "How the CFPB's proposed open banking rules compare with Europe's PSD2.", "https://varsha-shah-ai.blogspot.com/2024/05/cfpb-1099-open-banking-and-comparison.html"],
+  ["2024-05-07", "Vertex AI hallucination: Luna the elephant", "Responsible AI & regulation", "7193595473360732162", ""],
+  ["2024-05-06", "Different types of bias in models", "Responsible AI & regulation", "7193233076880089088", "A fun AI-made music video on the types of bias in models.", "https://varsha-shah-ai.blogspot.com/2024/04/incorporating-eu-ai-model-development.html"],
+  ["2024-05-02", "Stablecoins to fight currency devaluation in Venezuela and Argentina", "Crypto & stablecoins", "7191798613289672704", "A product strategy using USDC to help people protect their savings from hyperinflation.", "https://varsha-shah-ai.blogspot.com/2024/05/product-strategy-empower-common-man-to.html"],
+  ["2024-04-29", "Copilot and the calming zen UX spinner", "AI in practice", "7190760466938294272", "Using Copilot to reimagine the loading spinner so waiting feels calm.", "https://varsha-shah-ai.blogspot.com/2024/04/copilot-zen-ux-spinner.html"],
+  ["2024-04-27", "EU AI Act breakdown for data scientists", "Responsible AI & regulation", "7189787730162208768", "What the EU AI Act means for data scientists building models.", "https://varsha-shah-ai.blogspot.com/2024/04/eu-ai-act-breakdown-for-data-scientists.html"],
+  ["2024-04-25", "The EU AI Act", "Responsible AI & regulation", "7189281027507310592", ""], 
+  ["2023-07-28", "Cryptocurrency and crypto payments", "Crypto & stablecoins", "7090741649613467649", ""]
 ];
 const PROJECTS = [
   { id: "agentic", name: "Agentic Commerce Fraud Demo", tag: "Fraud · Agentic AI", g: ["#0A84FF", "#5E5CE6"],
@@ -653,7 +803,7 @@ const PROJECTS = [
       ["Lesson site", "Static interactive tutorial deployed on Vercel"]],
     stack: ["Claude Code", "CLAUDE.md schema", "Obsidian", "Mermaid", "Vercel"] },
   { id: "glam", name: "Glam Mesh", tag: "Social commerce · AI agents", g: ["#FF375F", "#BF5AF2"],
-    stat: ["1 link", "group shopping"], chip: "Shop together",
+    stat: ["1 link", "group shopping"], chip: "Shop together", posts: ["7469040414109548545"],
     d: "Friends vote on your beauty cart, then an AI agent gives the group verdict.",
     fit: "purchase funnels and trust in shared experiences",
     live: "https://glam-mesh.vercel.app", repo: "https://github.com/budhli/glam-mesh",
@@ -701,7 +851,7 @@ const PROJECTS = [
   { id: "early", name: "Early Careers Launchpad", tag: "Careers · Program", g: ["#5E5CE6", "#BF5AF2"],
     stat: ["4", "weeks"], chip: "Program",
     d: "A four-week program for graduates to ship real AI projects.",
-    fit: "mentoring and scaling AI skills (367 trained at Visa)",
+    fit: "mentoring and scaling AI skills",
     live: "https://early-careers-launch.vercel.app", repo: null,
     archTitle: "How it works", arch: [
       ["Build", "Graduates pick real problems and build AI projects"],
@@ -727,6 +877,7 @@ const liUrl = id => LI[id] || `https://www.linkedin.com/feed/update/urn:li:activ
 const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 const fmt = d => `${MONTHS[+d.slice(5, 7) - 1]} ${+d.slice(8)}, ${d.slice(0, 4)}`;
 const SVG = {
+  pen: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>',
   li: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.2c0-1.24-.02-2.84-1.73-2.84-1.73 0-2 1.35-2 2.75V21h-4z"/></svg>',
   up: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>',
   flip: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 21v-5h5"/></svg>',
@@ -754,35 +905,48 @@ const CAT_ICON = [
   '<path d="M3 20l6-6 4 4 8-8"/><path d="M15 10h6v6"/>',
   '<path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"/>'
 ];
-/* Real post images: drop files named li-<post id>.jpg next to the page and list the ids here. */
-const POST_IMG = {};
+/* Post images: put a file named li/<post date>.jpg (for example li/2026-10-02.jpg) next to the page and it replaces the topic banner automatically. */
 const CATS = ["AI in practice", "Responsible AI & regulation", "Payments & commerce", "Crypto & stablecoins", "Product leadership", "Build in public"];
 let cat = "All", all = false;
+POSTS.sort((a, b) => b[0].localeCompare(a[0]));
+const FEATURED = ["7442556028111564800", "7441861330501890050", "7488239467300954112", "7477330042289684480", "b-psr", "7195769798184611840", "7189787730162208768", "7193233076880089088", "b-fraudstory"];
+const COMPLIANCE = ["7189281027507310592", "7193595473360732162", "7191798613289672704", "7090741649613467649"];
+const BEYOND_POSTS = ["7467953266384056321", "b-kaiber"];
+/* Post images that were made with AI tools (by post date) */
+const AI_IMG = new Set(["2026-10-02", "2026-07-29", "2026-07-22", "2026-06-29", "2026-06-23", "2026-06-17", "2026-06-10", "2026-03-25", "2026-03-23", "2024-05-13", "2024-04-27", "2024-05-06"]);
+const byId = id => POSTS.find(p => p[3] === id);
+const hrefOf = p => p[3].startsWith("b-") ? p[5] : liUrl(p[3]);
 function renderPosts() {
-  const count = c => POSTS.filter(p => p[2] === c).length;
-  document.getElementById("postFilters").innerHTML = ["All", ...CATS].map(c =>
-    `<button type="button" aria-pressed="${c === cat}" data-c="${esc(c)}">${esc(c)}<span class="n">${c === "All" ? POSTS.length : count(c)}</span></button>`).join("");
-  const list = POSTS.filter(p => cat === "All" || p[2] === cat);
-  const shown = all || cat !== "All" ? list : list.slice(0, 9);
-  document.getElementById("postGrid").innerHTML = shown.map(([d, t, c, id]) => `
-    <a class="post c${CATS.indexOf(c) + 1}" href="${liUrl(id)}" target="_blank" rel="noopener">
-      <span class="thumb" aria-hidden="true">${POST_IMG[id] ? `<img src="${POST_IMG[id]}" alt="" loading="lazy">` : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${CAT_ICON[CATS.indexOf(c)]}</svg>`}</span>
-      <span class="top"><span class="cat">${esc(c)}</span><span class="lic" aria-hidden="true">${SVG.li}</span></span>
+  document.getElementById("postGrid").innerHTML = FEATURED.map(byId).filter(Boolean).map(([d, t, c, id, sm, blog]) => {
+    const isBlog = id.startsWith("b-"), href = isBlog ? blog : liUrl(id);
+    return `
+    <article class="post c${CATS.indexOf(c) + 1}">
+      <span class="thumb" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${CAT_ICON[CATS.indexOf(c)]}</svg><img src="li/${isBlog ? id : d}.jpg" alt="" loading="lazy" onerror="this.remove()">${!isBlog && AI_IMG.has(d) ? '<span class="aichip on-img">AI image</span>' : ""}</span>
+      <span class="top"><span class="cat">${esc(c)}</span><span class="lic${isBlog ? " blog" : ""}" aria-hidden="true">${isBlog ? SVG.pen : SVG.li}</span></span>
       <span class="t">${esc(t)}</span>
-      <span class="d">${fmt(d)}</span>
-      <span class="go">Read on LinkedIn ${SVG.up}</span>
-    </a>`).join("");
-  const mb = document.getElementById("morePosts");
-  mb.hidden = cat !== "All";
-  mb.textContent = all ? "Show fewer" : `Show all ${POSTS.length} posts`;
+      ${sm ? `<span class="sm">${esc(sm)}</span>` : ""}
+      <span class="d">${fmt(d)}${isBlog ? " · Blog" : ""}</span>
+      <a class="go main" href="${href}" target="_blank" rel="noopener">${isBlog ? "Read on my blog" : "Read on LinkedIn"} ${SVG.up}<span class="vh"> ${esc(t)}</span></a>
+      ${!isBlog && blog ? `<a class="also" href="${blog}" target="_blank" rel="noopener">Also on my blog ↗</a>` : ""}
+    </article>`;
+  }).join("");
+  const li = p => `<li><a href="${hrefOf(p)}" target="_blank" rel="noopener"><span class="lt">${esc(p[1])}</span><span class="ld">${fmt(p[0])}${p[3].startsWith("b-") ? " · Blog" : ""} ↗</span></a>${!p[3].startsWith("b-") && p[5] ? ` <a class="lb" href="${p[5]}" target="_blank" rel="noopener">blog ↗</a>` : ""}</li>`;
+  document.getElementById("listCompliance").innerHTML = COMPLIANCE.map(byId).filter(Boolean).map(li).join("");
+  const used = new Set([...FEATURED, ...COMPLIANCE, ...BEYOND_POSTS]);
+  const earlier = POSTS.filter(p => !used.has(p[3]));
+  document.getElementById("listEarlier").innerHTML = (earlierOpen ? earlier : earlier.slice(0, 3)).map(li).join("");
+  const tg = document.getElementById("earlierToggle");
+  tg.hidden = earlier.length <= 3;
+  tg.setAttribute("aria-expanded", String(earlierOpen));
+  tg.textContent = earlierOpen ? "Show fewer" : `Show all ${earlier.length}`;
 }
-document.getElementById("postFilters").addEventListener("click", e => { const b = e.target.closest("[data-c]"); if (b) { cat = b.dataset.c; renderPosts(); } });
-document.getElementById("morePosts").addEventListener("click", () => { all = !all; renderPosts(); });
+let earlierOpen = false;
+document.getElementById("earlierToggle").addEventListener("click", () => { earlierOpen = !earlierOpen; renderPosts(); });
 renderPosts();
 
 /* Projects */
-const PG = { agentic: "linear-gradient(135deg,#F43F5E,#FB923C)", wiki: "linear-gradient(135deg,#0891B2,#22D3EE)", raman: "linear-gradient(135deg,#10B981,#34D399)", glam: "linear-gradient(135deg,#8B5CF6,#EC4899)", recast: "linear-gradient(135deg,#F59E0B,#FBBF24)", fds: "linear-gradient(135deg,#6366F1,#22D3EE)", early: "linear-gradient(135deg,#0284C7,#6366F1)", kodava: "linear-gradient(135deg,#64748B,#94A3B8)" };
-const ORDER = ["agentic", "wiki", "raman", "glam", "recast", "fds", "early", "kodava"];
+const PG = { agentic: "linear-gradient(135deg,#2563EB,#06B6D4)", wiki: "linear-gradient(135deg,#0891B2,#22D3EE)", raman: "linear-gradient(135deg,#10B981,#34D399)", glam: "linear-gradient(135deg,#8B5CF6,#6366F1)", recast: "linear-gradient(135deg,#F59E0B,#FBBF24)", fds: "linear-gradient(135deg,#6366F1,#22D3EE)", early: "linear-gradient(135deg,#0284C7,#6366F1)", kodava: "linear-gradient(135deg,#64748B,#94A3B8)" };
+const ORDER = ["agentic", "wiki", "raman", "glam", "recast", "fds", "early"];
 document.getElementById("projectGrid").innerHTML = ORDER.map(k => PROJECTS.find(p => p.id === k)).map(p => `
   <article class="pcard" id="p-${p.id}" style="--pg:${PG[p.id]}">
     <div class="pinner">
@@ -897,6 +1061,74 @@ document.getElementById("projectGrid").addEventListener("click", e => {
   }
   mark(0); setBtn(); start();
 })();
+
+/* Videos */
+const VIDEOS = [
+  ["K2lJ2lpGd1A", "Open banking, explained", "How bank-to-bank data access is changing payments.", "Payments", "c3"],
+  ["tQw_5bRuR4c", "Copilot, goats and stablecoins", "What happened when I asked an AI to imagine stablecoins.", "Crypto & AI", "c4"],
+  ["lITK8WgTELw", "Why crypto is a poor tool for terror financing", "Hamas and the blockchain: why crypto leaves a trail.", "Crypto & risk", "c2"],
+  ["33OXfJGc1SE", "FraudGPT: cybercriminals have their own GPT", "How criminals are using their own AI models for scams and fraud.", "Fraud & AI", "c6"],
+];
+document.getElementById("ytGrid").innerHTML = VIDEOS.map(([id, t, d, tag, c]) => `
+  <article class="yt ${c}">
+    <button class="vthumb" type="button" data-vid="${id}" aria-label="Play ${esc(t)}">
+      <img src="yt/${id}.jpg" alt="" loading="lazy" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://i.ytimg.com/vi/${id}/hqdefault.jpg'}else{this.remove()}">
+      <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+    </button>
+    <span class="vtag">${esc(tag)}</span>
+    <span class="vt">${esc(t)}</span>
+    <span class="vd">${esc(d)}</span>
+    <a class="vgo" href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener">Open on YouTube ↗</a>
+  </article>`).join("");
+document.getElementById("ytGrid").addEventListener("click", e => {
+  const b = e.target.closest(".vthumb[data-vid]"); if (!b) return;
+  const id = b.dataset.vid, f = document.createElement("iframe");
+  f.className = "vframe";
+  f.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
+  f.title = b.getAttribute("aria-label");
+  f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+  f.allowFullscreen = true;
+  b.replaceWith(f);
+  f.focus();
+});
+
+/* Experience: collapse + count-up */
+document.querySelectorAll(".job").forEach(job => {
+  const btn = job.querySelector(".jtoggle"), total = job.querySelectorAll(".theme li").length;
+  const label = () => { const o = job.classList.contains("open"); btn.textContent = o ? "Show top results" : `See all ${total} results`; btn.setAttribute("aria-expanded", String(o)); };
+  btn.addEventListener("click", () => { job.classList.toggle("open"); label(); if (job.classList.contains("open")) countUp(job); });
+  label();
+});
+const counted = new WeakSet();
+function animateNum(el) {
+  if (counted.has(el)) return; counted.add(el);
+  const txt = el.textContent, m = txt.match(/^([^0-9]*)([0-9]+(?:\.[0-9]+)?)(.*)$/);
+  if (!m) { el.animate([{ opacity: 0, transform: "translateY(6px)" }, { opacity: 1, transform: "none" }], { duration: 500, easing: "ease-out" }); return; }
+  const [, pre, num, post] = m, end = parseFloat(num), dec = (num.split(".")[1] || "").length, t0 = performance.now(), dur = 1100;
+  const step = now => { const p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 3); el.textContent = pre + (end * e).toFixed(dec) + post; if (p < 1) requestAnimationFrame(step); else el.textContent = txt; };
+  requestAnimationFrame(step);
+}
+function countUp(scope) { scope.querySelectorAll(".theme li").forEach(li => { if (li.offsetParent) animateNum(li.querySelector("b")); }); }
+if (!matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) {
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { countUp(e.target); io.unobserve(e.target); } }), { threshold: 0.3 });
+  document.querySelectorAll(".job").forEach(j => io.observe(j));
+}
+
+/* Skills: tilt + post links */
+document.querySelectorAll(".sxl a[data-li]").forEach(a => { a.href = liUrl(a.dataset.li); });
+if (matchMedia("(hover: hover) and (pointer: fine)").matches && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  document.querySelectorAll(".skill").forEach(card => {
+    card.addEventListener("pointermove", e => {
+      const r = card.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      card.style.transform = `perspective(900px) rotateX(${(0.5 - y) * 8}deg) rotateY(${(x - 0.5) * 10}deg) translateY(-3px)`;
+      card.style.setProperty("--gx", x * 100 + "%"); card.style.setProperty("--gy", y * 100 + "%");
+      card.classList.add("tilting");
+    });
+    card.addEventListener("pointerleave", () => { card.style.transform = ""; card.classList.remove("tilting"); });
+  });
+}
+
+document.getElementById("bDog").href = liUrl("7467953266384056321");
 
 /* Profile video sound */
 (() => {
