@@ -1,0 +1,929 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Varsha Shah, Principal Technical Product Manager: trust, identity, fraud and compliance.">
+<meta name="theme-color" content="#ffffff">
+<title>Varsha Shah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout (mobile-first), in the language of Varsha's own Frontend Design System:
+   teal on white, Bricolage display, Plus Jakarta body, mono teal labels, soft corner glows.
+   Order: profile + avatar reel → experience → skills → writing (small cards) → personal projects → contact. */
+:root {
+  color-scheme: light;
+  --teal: #06B6D4; --teal-dark: #0891B2; --teal-deep: #0E7490; --teal-light: #22D3EE; --teal-pale: #CFFAFE; --teal-mist: #F0FDFE;
+  --white: #FFFFFF; --text: #0A0F1E; --text2: #4B5563; --text3: #9CA3AF;
+  --border: rgba(6,182,212,.18); --border2: #E5E7EB;
+  --indigo: #6366F1; --indigo-bg: #EEF2FF; --coral: #F43F5E; --coral-bg: #FFF1F2; --amber: #D97706; --amber-bg: #FFFBEB; --violet: #8B5CF6; --violet-bg: #F5F3FF; --emerald: #059669; --emerald-bg: #ECFDF5; --sky: #0284C7; --sky-bg: #F0F9FF; --li: #0A66C2;
+  --ok: #10B981; --ok-bg: #ECFDF5; --warn: #D97706; --warn-bg: #FFFBEB;
+  --r: 10px; --r-lg: 16px; --r-xl: 24px;
+  --sans: "Plus Jakarta Sans", -apple-system, "Segoe UI", sans-serif;
+  --display: "Bricolage Grotesque", "Plus Jakarta Sans", sans-serif;
+  --mono: ui-monospace, "SF Mono", "Cascadia Code", Menlo, monospace;
+  --ease: cubic-bezier(.4, 0, .2, 1);
+  --shadow: 0 1px 2px rgba(10,15,30,.04), 0 8px 24px -12px rgba(10,15,30,.12);
+  --shadow-up: 0 2px 4px rgba(10,15,30,.04), 0 22px 40px -18px rgba(8,145,178,.35);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--white); color: var(--text); font-family: var(--sans); font-size: 15.5px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: var(--teal-dark); text-decoration: none; }
+a:hover { color: var(--teal-deep); text-decoration: underline; text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-radius: 8px; }
+h1, h2, h3, h4 { margin: 0; font-family: var(--display); letter-spacing: -.025em; text-wrap: balance; }
+p { margin: 0; }
+.wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding-inline: 16px; }
+@media (min-width: 640px) { .wrap { padding-inline: 28px; } }
+.label { font-family: var(--mono); font-weight: 600; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--teal-dark); }
+
+#spotlight { position: fixed; inset: 0; pointer-events: none; z-index: -1;
+  background: radial-gradient(600px circle at var(--mx, 70%) var(--my, 10%), rgba(6,182,212,.08), rgba(6,182,212,.03) 40%, transparent 65%); }
+
+/* Nav */
+.nav { position: sticky; top: 0; z-index: 40; background: rgba(255,255,255,.86); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border2); padding-top: env(safe-area-inset-top, 0px); }
+.nav .wrap { height: 58px; display: flex; align-items: center; gap: 12px; }
+.logo { font-family: var(--display); font-weight: 800; font-size: 1.1rem; color: var(--text); letter-spacing: -.02em; margin-right: auto; }
+.logo:hover { text-decoration: none; color: var(--text); }
+.logo span { color: var(--teal); }
+.nav-links { display: none; gap: 2px; }
+@media (min-width: 820px) { .nav-links { display: flex; } }
+.nav-links a { padding: 6px 12px; border-radius: var(--r); font-size: 13.5px; font-weight: 500; color: var(--text2); }
+.nav-links a:hover { background: var(--teal-mist); color: var(--teal-deep); text-decoration: none; }
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 11px 18px; min-height: 44px; border-radius: var(--r); font: 600 14px var(--sans); border: 0; cursor: pointer; white-space: nowrap; transition: transform .22s var(--ease), box-shadow .22s var(--ease), background .22s var(--ease); }
+.btn:hover { text-decoration: none; transform: translateY(-1px); }
+.btn-primary { background: linear-gradient(135deg, #0891B2 0%, #06B6D4 55%, #22D3EE 100%); color: #fff; box-shadow: 0 4px 14px rgba(6,182,212,.35); }
+.btn-primary:hover { color: #fff; box-shadow: 0 8px 22px rgba(6,182,212,.45); }
+.btn-ghost { background: var(--white); color: var(--text); border: 1px solid var(--border2); }
+.btn-ghost:hover { color: var(--teal-deep); border-color: var(--teal); background: var(--teal-mist); }
+.btn-sm { padding: 7px 12px; min-height: 36px; font-size: 12.5px; border-radius: 9px; }
+.btn svg { width: 15px; height: 15px; flex: none; }
+
+/* Section card (from the design system, without the running border) */
+.card { position: relative; overflow: hidden; background: rgba(255,255,255,.96); border: 1px solid var(--border2); border-radius: var(--r-xl); padding: 22px 18px; }
+@media (min-width: 768px) { .card { padding: 36px; } }
+.card::before { content: ""; position: absolute; top: -90px; right: -90px; width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(circle, rgba(6,182,212,.10), transparent 70%); pointer-events: none; }
+.card > * { position: relative; }
+section { padding-block: 22px 0; scroll-margin-top: 70px; }
+@media (min-width: 768px) { section { padding-block: 28px 0; } }
+.sec-head { display: grid; gap: 6px; margin-bottom: 22px; }
+.sec-head h2 { font-size: clamp(1.6rem, 5vw, 2.1rem); font-weight: 800; line-height: 1.1; }
+.sec-head p { color: var(--text2); max-width: 60ch; }
+.sec-row { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px; }
+
+/* Profile */
+.profile { display: grid; grid-template-columns: 1fr; gap: 16px; padding-block: 20px 0; }
+.profile > .card { background: linear-gradient(160deg, #F0FDFE 0%, #FFFFFF 38%, #FFFFFF 70%, #EEF2FF 100%); }
+@media (min-width: 920px) { .profile { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 20px; align-items: start; padding-block: 32px 0; } }
+.who { display: flex; align-items: center; gap: 14px; }
+.photo { width: 76px; height: 76px; border-radius: 50%; object-fit: cover; flex: none; border: 3px solid #fff; box-shadow: 0 0 0 2px var(--teal), 0 8px 20px -6px rgba(6,182,212,.5); }
+.badge { display: inline-flex; align-items: center; gap: 7px; padding: 4px 12px 4px 6px; border: 1px solid var(--border); border-radius: 99px; background: var(--teal-mist); font-size: 12px; font-weight: 600; color: var(--teal-deep); }
+.badge i { width: 16px; height: 16px; border-radius: 50%; background: var(--teal); display: grid; place-items: center; }
+.badge i::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #fff; }
+.profile h1 { font-size: clamp(2.6rem, 9vw, 4.2rem); font-weight: 800; line-height: .95; letter-spacing: -.04em; margin-top: 18px; }
+.profile .role { font-family: var(--display); font-weight: 700; font-size: clamp(1.1rem, 3.4vw, 1.4rem); color: var(--teal-dark); margin-top: 10px; line-height: 1.25; }
+.profile .bio { color: var(--text2); margin-top: 14px; max-width: 58ch; font-size: 1rem; line-height: 1.7; }
+.facts { list-style: none; margin: 20px 0 0; padding: 0; display: grid; grid-template-columns: 1fr; border: 1px solid var(--border2); border-radius: var(--r-lg); overflow: hidden; }
+@media (min-width: 560px) { .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.facts li { padding: 12px 14px; display: grid; gap: 2px; min-width: 0; border-top: 1px solid var(--border2); }
+.facts li:first-child { border-top: 0; }
+@media (min-width: 560px) { .facts li:nth-child(2) { border-top: 0; } .facts li:nth-child(even) { border-left: 1px solid var(--border2); } }
+.facts .k { font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); }
+.facts .v { font-size: 14px; font-weight: 600; overflow-wrap: anywhere; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.copy { font: 600 11px var(--sans); border: 1px solid var(--border2); background: #fff; color: var(--text2); padding: 3px 9px; border-radius: 99px; cursor: pointer; }
+.copy:hover { border-color: var(--teal); color: var(--teal-deep); }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 18px; }
+@media (min-width: 560px) { .stats { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.stat { border-radius: var(--r-lg); background: var(--teal-mist); border: 1px solid var(--border); padding: 12px; }
+.stat b { display: block; font-family: var(--display); font-size: 1.45rem; font-weight: 800; letter-spacing: -.03em; line-height: 1.05; color: var(--text); font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text2); line-height: 1.35; display: block; margin-top: 3px; }
+
+/* Hero side: video + facts */
+.side { display: grid; gap: 14px; align-content: start; }
+.vid { margin: 0; position: relative; border-radius: var(--r-xl); overflow: hidden; background: #0B1220; aspect-ratio: 16 / 9; box-shadow: 0 24px 50px -24px rgba(99,102,241,.55); }
+.vid video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.vid figcaption { position: absolute; left: 10px; right: 10px; bottom: 10px; display: flex; align-items: center; gap: 8px; color: #fff; font-size: 13px; font-weight: 700; }
+.live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--coral); box-shadow: 0 0 0 4px rgba(244,63,94,.3); }
+.vbtn { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font: 600 12px var(--sans); color: #fff; padding: 7px 11px; border-radius: 99px; border: 1px solid rgba(255,255,255,.35); cursor: pointer; background: rgba(15,23,42,.45); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); min-height: 34px; }
+.vbtn:hover { background: rgba(15,23,42,.65); }
+.vbtn svg { width: 15px; height: 15px; }
+.side .facts { margin-top: 0; background: #fff; }
+.btn-li { background: var(--li); color: #fff; box-shadow: 0 4px 14px rgba(10,102,194,.3); }
+.btn-li:hover { background: #004182; color: #fff; }
+/* Highlights band */
+.band { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 16px; }
+@media (min-width: 700px) { .band { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 1040px) { .band { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+.band .stat { border-radius: var(--r-lg); padding: 14px; border: 1px solid transparent; }
+.band .stat b { display: block; font-family: var(--display); font-size: 1.5rem; font-weight: 800; letter-spacing: -.03em; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.band .stat span { display: block; font-size: 12px; color: var(--text2); line-height: 1.35; margin-top: 4px; }
+.s1 { background: var(--teal-mist); border-color: var(--border) !important; } .s1 b { color: var(--teal-deep); }
+.s2 { background: var(--indigo-bg); } .s2 b { color: var(--indigo); }
+.s3 { background: var(--violet-bg); } .s3 b { color: var(--violet); }
+.s4 { background: var(--coral-bg); } .s4 b { color: var(--coral); }
+.s5 { background: var(--amber-bg); } .s5 b { color: var(--amber); }
+.s6 { background: var(--emerald-bg); } .s6 b { color: var(--emerald); }
+.profile-bg { position: absolute; }
+/* Varsha at work: autoplay carousel */
+.cctl { display: flex; gap: 6px; }
+.cbtn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border2); background: #fff; color: var(--text); display: grid; place-items: center; cursor: pointer; transition: all .2s var(--ease); }
+.cbtn:hover { border-color: var(--teal); color: var(--teal-deep); background: var(--teal-mist); }
+.cbtn svg { width: 16px; height: 16px; }
+.carousel { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; margin-inline: -18px; padding: 4px 18px 10px; scroll-padding-inline: 18px; overscroll-behavior-x: contain; }
+.carousel::-webkit-scrollbar { display: none; }
+@media (min-width: 768px) { .carousel { margin-inline: -36px; padding-inline: 36px; scroll-padding-inline: 36px; } }
+.mcard { --c: var(--teal-deep); --c-bg: var(--teal-mist); flex: 0 0 84%; scroll-snap-align: start; border-radius: var(--r-lg); background: #fff; border: 1px solid var(--border2); overflow: hidden; display: flex; flex-direction: column; transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease); }
+@media (min-width: 600px) { .mcard { flex-basis: calc((100% - 14px) / 2); } }
+@media (min-width: 1000px) { .mcard { flex-basis: calc((100% - 28px) / 3); } }
+.mcard.on { border-color: var(--c); box-shadow: 0 18px 36px -20px var(--c); }
+.mcard.t1 { --c: var(--sky); --c-bg: var(--sky-bg); } .mcard.t2 { --c: var(--amber); --c-bg: var(--amber-bg); } .mcard.t3 { --c: var(--coral); --c-bg: var(--coral-bg); }
+.mcard.t4 { --c: var(--violet); --c-bg: var(--violet-bg); } .mcard.t5 { --c: var(--teal-deep); --c-bg: var(--teal-mist); } .mcard.t6 { --c: var(--indigo); --c-bg: var(--indigo-bg); }
+.mimg { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #0A1A24; }
+.mimg img { width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1); transform-origin: 50% 60%; }
+@media (prefers-reduced-motion: no-preference) { .mcard.on .mimg img { animation: mkb 4.5s ease-out forwards; } @keyframes mkb { to { transform: scale(1.08); } } }
+.mtag { position: absolute; left: 10px; top: 10px; font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: #fff; padding: 4px 9px; border-radius: 99px; background: color-mix(in srgb, var(--c) 82%, transparent); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.mbody { padding: 14px 16px 16px; display: grid; gap: 6px; border-top: 3px solid var(--c); }
+.mbody h3 { font-size: 1.1rem; font-weight: 700; }
+.mbody p { font-size: 13.5px; color: var(--text2); }
+.mpills { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 2px; }
+.mpills i { font-style: normal; font-family: var(--mono); font-size: 10.5px; font-weight: 600; padding: 2px 7px; border-radius: 6px; }
+.mpills i.p { background: var(--emerald-bg); color: var(--emerald); }
+.mpills i.f { background: var(--amber-bg); color: var(--amber); }
+.mpills i.p::before { content: "✓ "; } .mpills i.f::before { content: "! "; }
+.mnote { font-family: var(--mono); font-size: 11.5px; color: var(--c); background: var(--c-bg); padding: 5px 8px; border-radius: 8px; }
+.dots { display: flex; justify-content: center; gap: 6px; margin-top: 6px; }
+.dots button { width: 28px; height: 28px; border: 0; background: transparent; cursor: pointer; display: grid; place-items: center; padding: 0; }
+.dots button::before { content: ""; width: 8px; height: 8px; border-radius: 99px; background: var(--border2); transition: all .3s var(--ease); }
+.dots button[aria-current="true"]::before { width: 26px; background: var(--teal); }
+
+/* Avatar reel */
+.reel { margin: 0; position: relative; border-radius: var(--r-xl); overflow: hidden; background: #0A1A24; aspect-ratio: 4 / 5; width: 100%; box-shadow: 0 30px 60px -30px rgba(8,145,178,.6); isolation: isolate; }
+@media (min-width: 560px) { .reel { aspect-ratio: 16 / 9; } }
+.shots { position: absolute; inset: 0; z-index: -2; }
+.shots img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--op, 50% 50%); opacity: 0; transform: scale(1.04); transition: opacity .9s var(--ease); }
+@media (min-width: 560px) { .shots img { object-position: 50% 50%; } }
+.shots img.on { opacity: 1; }
+.shots img { transform-origin: 50% 70%; transform: scale(1); }
+@media (prefers-reduced-motion: no-preference) { .shots img.on { animation: kb 5.2s ease-out forwards; } @keyframes kb { from { transform: scale(1); } to { transform: scale(1.07); } } }
+@media (max-width: 559px) {
+  .reel .sig, .reel .graph svg, .reel .checks li:not(:last-child), .reel .term div:not(.ok) { display: none; }
+  .reel .glass { padding: 10px 12px; }
+  .reel .glass h4 { font-size: .95rem; margin-bottom: 4px; }
+  .reel .verdict, .reel .checks li, .reel .term div { opacity: 1 !important; transform: none !important; width: auto !important; animation: none !important; }
+  .reel .verdict { margin-top: 0; }
+}
+.gp { font-size: 12.5px; color: #CFFAFE; }
+@media (min-width: 560px) { .scene { right: auto; width: min(360px, 46%); left: 16px; bottom: 16px; } }
+.reel::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(4,20,30,.45) 0%, transparent 28%, transparent 45%, rgba(4,20,30,.75) 100%); }
+.scan { position: absolute; left: 0; right: 0; height: 2px; top: 0; background: linear-gradient(90deg, transparent, rgba(34,211,238,.9), transparent); box-shadow: 0 0 18px rgba(34,211,238,.8); opacity: .7; z-index: 0; }
+.bars { position: absolute; top: 12px; left: 12px; right: 12px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 5px; z-index: 2; }
+.bars i { height: 3px; border-radius: 3px; background: rgba(255,255,255,.3); overflow: hidden; }
+.bars i b { display: block; height: 100%; width: 0; background: #fff; }
+.reel-top { position: absolute; top: 24px; left: 14px; right: 14px; display: flex; justify-content: space-between; align-items: center; z-index: 2; color: #fff; }
+.reel-top .me { display: flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 700; }
+.reel-top .me img { position: static; width: 26px; height: 26px; border-radius: 50%; transform: none; transition: none; border: 1.5px solid #fff; }
+.reel-btn { width: 34px; height: 34px; border-radius: 50%; border: 0; display: grid; place-items: center; cursor: pointer; color: #fff; background: rgba(255,255,255,.18); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.reel-btn svg { width: 14px; height: 14px; }
+.scene { position: absolute; left: 12px; right: 12px; bottom: 12px; z-index: 2; opacity: 0; transform: translateY(14px); transition: opacity .5s var(--ease), transform .5s var(--ease); pointer-events: none; }
+.scene.on { opacity: 1; transform: none; transition-delay: .35s; }
+.scene:not(.on) { transition-duration: .3s; }
+.cap { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--teal-pale); margin-bottom: 8px; }
+.cap::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--teal-light); box-shadow: 0 0 10px var(--teal-light); }
+.glass { border-radius: 16px; padding: 12px 14px; color: #E6FBFF; background: rgba(8,30,42,.55); -webkit-backdrop-filter: blur(14px) saturate(140%); backdrop-filter: blur(14px) saturate(140%); border: 1px solid rgba(34,211,238,.35); box-shadow: inset 0 1px 0 rgba(255,255,255,.15); }
+.glass h4 { font-family: var(--display); font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 8px; letter-spacing: -.01em; }
+.sig { display: grid; grid-template-columns: 1fr auto; gap: 4px 10px; font-family: var(--mono); font-size: 11.5px; }
+.sig span, .sig em { opacity: 0; transform: translateX(-6px); }
+.sig em { font-style: normal; font-weight: 700; padding: 1px 7px; border-radius: 6px; font-size: 10.5px; }
+.sig em.p { background: rgba(16,185,129,.22); color: #6EE7B7; }
+.sig em.f { background: rgba(245,158,11,.22); color: #FCD34D; }
+.verdict { margin-top: 8px; font-size: 12px; font-weight: 700; color: #fff; display: flex; justify-content: space-between; opacity: 0; }
+.graph svg { width: 100%; height: 92px; display: block; }
+.graph line { stroke: rgba(34,211,238,.8); stroke-width: 1.5; stroke-dasharray: 80; stroke-dashoffset: 80; }
+.graph circle { fill: #22D3EE; opacity: 0; }
+.graph circle.risk { fill: #FCD34D; }
+.graph .note { font-family: var(--mono); font-size: 11px; opacity: .85; }
+.checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 12.5px; }
+.checks li { display: flex; gap: 8px; align-items: center; opacity: 0; transform: translateX(-6px); }
+.checks li::before { content: "✓"; width: 18px; height: 18px; border-radius: 50%; display: grid; place-items: center; font-size: 11px; font-weight: 800; color: #04313B; background: #22D3EE; flex: none; }
+.term { font-family: var(--mono); font-size: 11.5px; line-height: 1.6; }
+.term div { white-space: nowrap; overflow: hidden; width: 0; }
+.term .ok { color: #6EE7B7; }
+@media (prefers-reduced-motion: no-preference) {
+  .scan { animation: scan 4s linear infinite; }
+  @keyframes scan { from { top: 0; } to { top: 100%; } }
+  .bars i.run b { animation: fill var(--dur, 4200ms) linear forwards; }
+  .bars i.done b { width: 100%; }
+  @keyframes fill { to { width: 100%; } }
+  .scene.on .sig span, .scene.on .sig em, .scene.on .checks li { animation: in .4s var(--ease) forwards; }
+  .scene.on .verdict { animation: fade .4s var(--ease) 1.9s forwards; }
+  .scene.on .graph line { animation: draw .7s var(--ease) forwards; }
+  .scene.on .graph circle { animation: fade .3s var(--ease) forwards; }
+  .scene.on .term div { animation: type 1s steps(34) forwards; }
+  @keyframes in { to { opacity: 1; transform: none; } }
+  @keyframes fade { to { opacity: 1; } }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes type { to { width: 100%; } }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sig span, .sig em, .checks li, .verdict, .graph circle { opacity: 1 !important; transform: none !important; }
+  .graph line { stroke-dashoffset: 0 !important; }
+  .term div { width: 100% !important; }
+  .bars i.run b, .bars i.done b { width: 100%; }
+  }
+.reel.paused * { animation-play-state: paused !important; }
+
+/* Experience */
+.jobs { display: grid; gap: 14px; }
+.job { border: 1px solid var(--border2); border-radius: var(--r-lg); padding: 18px; background: #fff; transition: box-shadow .22s var(--ease), border-color .22s var(--ease), transform .22s var(--ease); }
+@media (min-width: 768px) { .job { padding: 24px; } }
+
+.job-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px; padding-bottom: 14px; border-bottom: 1px dashed var(--border2); }
+.job-head h3 { font-size: 1.5rem; font-weight: 800; }
+.job-head .t { font-weight: 600; color: var(--text); width: 100%; order: 3; font-size: 14.5px; }
+.job-head .d { font-family: var(--mono); font-size: 12px; color: var(--text3); }
+.themes { display: grid; grid-template-columns: 1fr; gap: 16px 28px; margin-top: 16px; }
+@media (min-width: 820px) { .themes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.theme h4 { font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--teal-dark); margin-bottom: 8px; }
+.theme ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.theme li { display: grid; grid-template-columns: 1fr; gap: 2px; font-size: 14px; color: var(--text2); line-height: 1.5; }
+@media (min-width: 520px) { .theme li { grid-template-columns: 4.9rem minmax(0, 1fr); gap: 12px; } }
+.job { padding: 14px; }
+@media (min-width: 520px) { .job { padding: 18px; } }
+.theme li b { font-family: var(--display); font-weight: 800; font-size: 1.02rem; color: var(--text); letter-spacing: -.02em; line-height: 1.35; font-variant-numeric: tabular-nums; }
+.theme li strong { color: var(--text); font-weight: 600; }
+.how { margin-top: 14px; border-radius: var(--r-lg); background: var(--teal-mist); border: 1px solid var(--border); padding: 18px; display: grid; gap: 10px; }
+@media (min-width: 820px) { .how { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 24px; align-items: center; padding: 22px 24px; } }
+.how h3 { font-size: 1.25rem; font-weight: 800; }
+.how p { color: var(--text2); font-size: 14px; }
+.how ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; counter-reset: s; }
+.how li { counter-increment: s; display: grid; grid-template-columns: 26px 1fr; gap: 10px; font-size: 13.5px; color: var(--text2); }
+.how li::before { content: counter(s); width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; font: 700 12px var(--mono); color: #fff; background: var(--teal); }
+.how li b { color: var(--text); }
+
+/* Skills */
+.skills { display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 640px) { .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1000px) { .skills { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.skill { border: 1px solid var(--border2); border-radius: var(--r-lg); padding: 16px; background: #fff; transition: border-color .22s var(--ease), box-shadow .22s var(--ease); }
+
+.skill h3 { font-size: 1.02rem; font-weight: 700; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.skill h3::before { content: ""; width: 8px; height: 8px; border-radius: 3px; background: var(--teal); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font-size: 12.5px; font-weight: 600; padding: 3px 8px; border-radius: 6px; background: var(--c-bg, var(--teal-mist)); color: var(--c, var(--teal-deep)); cursor: default; user-select: text; }
+.skill { --c: var(--teal-deep); --c-bg: var(--teal-mist); border-top: 3px solid var(--c); }
+.skill h3::before { background: var(--c) !important; }
+.k1 { --c: var(--sky); --c-bg: var(--sky-bg); } .k2 { --c: var(--coral); --c-bg: var(--coral-bg); } .k3 { --c: var(--indigo); --c-bg: var(--indigo-bg); }
+.k4 { --c: var(--amber); --c-bg: var(--amber-bg); } .k5 { --c: var(--violet); --c-bg: var(--violet-bg); } .k6 { --c: var(--emerald); --c-bg: var(--emerald-bg); }
+.awards { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 12px; }
+@media (min-width: 640px) { .awards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.award { display: flex; gap: 12px; align-items: center; border: 1px solid var(--border2); border-radius: var(--r-lg); padding: 14px 16px; }
+.award b { font-family: var(--display); font-size: 1.5rem; font-weight: 800; color: var(--teal-dark); min-width: 2.6rem; }
+.award span { font-size: 13.5px; color: var(--text2); line-height: 1.4; }
+.award strong { color: var(--text); display: block; }
+
+/* Filters */
+.filters { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; margin: 0 -18px 16px; padding: 0 18px 2px; }
+@media (min-width: 768px) { .filters { margin-inline: 0; padding-inline: 0; flex-wrap: wrap; } }
+.filters::-webkit-scrollbar { display: none; }
+.filters button { flex: none; font: 600 12.5px var(--sans); padding: 7px 12px; border-radius: 99px; border: 1px solid var(--border2); background: #fff; color: var(--text2); cursor: pointer; min-height: 34px; transition: all .2s var(--ease); }
+.filters button:hover { border-color: var(--teal); color: var(--teal-deep); }
+.filters button[aria-pressed="true"] { background: var(--teal-mist); border-color: var(--teal); color: var(--teal-deep); }
+.filters .n { font-family: var(--mono); font-size: 11px; color: var(--text3); margin-left: 3px; }
+
+/* Writing: small cards */
+.posts { display: grid; grid-template-columns: 1fr; gap: 10px; }
+@media (min-width: 600px) { .posts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 980px) { .posts { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.post { --c: var(--teal-deep); --c-bg: var(--teal-mist); position: relative; display: flex; flex-direction: column; gap: 6px; border: 1px solid var(--border2); cursor: pointer; border-radius: var(--r-lg); padding: 0 0 14px; overflow: hidden; background: #fff; color: var(--text); min-width: 0; transition: transform .22s var(--ease), border-color .22s var(--ease), box-shadow .22s var(--ease); }
+.post:hover { text-decoration: none; color: var(--text); border-color: var(--c); box-shadow: var(--shadow-up); transform: translateY(-2px); }
+.post .top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.post > .top, .post > .t, .post > .d, .post > .go { margin-inline: 16px; }
+.post .thumb { position: relative; aspect-ratio: 16 / 6; margin-bottom: 8px; overflow: hidden; background: linear-gradient(135deg, var(--c), var(--c-bg)); display: grid; place-items: center; }
+.post .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .4s var(--ease); }
+.post:hover .thumb img, .post:hover .thumb svg { transform: scale(1.04); }
+.post .thumb svg { width: 44px; height: 44px; color: #fff; opacity: .95; transition: transform .4s var(--ease); filter: drop-shadow(0 6px 12px rgba(0,0,0,.18)); }
+.post .thumb::after { content: ""; position: absolute; inset: 0; background: radial-gradient(120% 90% at 85% 0%, rgba(255,255,255,.35), transparent 55%); pointer-events: none; }
+.post .cat { font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--c); background: var(--c-bg); padding: 2px 7px; border-radius: 6px; }
+.post .go { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding-top: 6px; font-size: 12.5px; font-weight: 700; color: var(--li); }
+.post .go svg { width: 14px; height: 14px; }
+.post:hover .go { text-decoration: underline; text-underline-offset: 3px; }
+.post .lic { width: 22px; height: 22px; border-radius: 5px; background: var(--li); color: #fff; display: grid; place-items: center; flex: none; }
+.post .lic svg { width: 13px; height: 13px; }
+.c1 { --c: var(--teal-deep); --c-bg: var(--teal-mist); } .c2 { --c: var(--indigo); --c-bg: var(--indigo-bg); } .c3 { --c: var(--sky); --c-bg: var(--sky-bg); }
+.c4 { --c: var(--amber); --c-bg: var(--amber-bg); } .c5 { --c: var(--violet); --c-bg: var(--violet-bg); } .c6 { --c: var(--coral); --c-bg: var(--coral-bg); }
+.post .ar { color: var(--text3); font-size: 14px; transition: color .2s; }
+.post:hover .ar { color: var(--teal); }
+.post .t { font-weight: 600; font-size: 14.5px; line-height: 1.38; }
+.post .d { font-size: 12px; color: var(--text3); }
+.more { display: flex; justify-content: center; margin-top: 14px; }
+
+/* Projects: compact flip cards */
+.projects { display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 600px) { .projects { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 980px) { .projects { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.pcard { perspective: 1400px; }
+.pinner { display: grid; position: relative; height: 100%; transform-style: preserve-3d; transition: transform .7s var(--ease); }
+.pcard.flipped .pinner { transform: rotateY(180deg); }
+.face { grid-area: 1 / 1; backface-visibility: hidden; -webkit-backface-visibility: hidden; border: 1px solid var(--border2); border-radius: var(--r-lg); background: #fff; padding: 16px; display: flex; flex-direction: column; gap: 6px; min-width: 0; transition: box-shadow .22s var(--ease), border-color .22s var(--ease); }
+@media (hover: hover) { .pcard:hover .face { border-color: var(--border); box-shadow: var(--shadow-up); } }
+.back { position: absolute; inset: 0; transform: rotateY(180deg); overflow-y: auto; overscroll-behavior: contain; background: var(--teal-mist); border-color: var(--border); }
+.picon { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--pg, linear-gradient(135deg, #0891B2, #22D3EE)); color: #fff; margin-bottom: 4px; box-shadow: 0 6px 14px -6px rgba(6,182,212,.7); }
+.picon svg { width: 20px; height: 20px; }
+.face .ptag { font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--text3); }
+.face h3 { font-size: 1.06rem; font-weight: 700; line-height: 1.25; }
+.face p { font-size: 13.5px; color: var(--text2); line-height: 1.5; }
+.pact { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 10px; }
+.bh { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.bh h3 { font-size: .98rem; }
+.bh .sub { font-size: 11.5px; color: var(--text3); font-weight: 600; }
+.x { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--border2); background: #fff; display: grid; place-items: center; cursor: pointer; color: var(--text2); flex: none; }
+.x:hover { border-color: var(--teal); color: var(--teal-deep); }
+.x svg { width: 14px; height: 14px; }
+.arch { list-style: none; margin: 4px 0 0; padding: 0; display: grid; }
+.arch li { position: relative; padding: 0 0 8px 22px; }
+.arch li::before { content: ""; position: absolute; left: 5px; top: 15px; bottom: -1px; width: 1.5px; background: var(--teal-pale); }
+.arch li:last-child::before { display: none; }
+.arch li::after { content: ""; position: absolute; left: 0; top: 4px; width: 12px; height: 12px; border-radius: 4px; background: var(--teal); }
+.arch b { display: block; font-size: 12.5px; line-height: 1.3; }
+.arch span { display: block; font-size: 11.5px; color: var(--text2); line-height: 1.4; }
+.stack { display: flex; flex-wrap: wrap; gap: 4px; }
+.stack i { font-style: normal; font-size: 10.5px; font-weight: 600; padding: 2px 8px; border-radius: 99px; background: #fff; border: 1px solid var(--border); color: var(--teal-deep); }
+.related a { display: block; font-size: 11.5px; font-weight: 600; }
+
+/* Contact */
+.contact { text-align: center; display: grid; justify-items: center; gap: 12px; }
+.contact h2 { font-size: clamp(1.7rem, 5vw, 2.3rem); font-weight: 800; }
+.contact p { color: var(--text2); max-width: 48ch; }
+.contact .mail { font-family: var(--display); font-size: clamp(1.1rem, 4vw, 1.4rem); font-weight: 700; overflow-wrap: anywhere; }
+footer { text-align: center; color: var(--text3); font-size: 12px; padding-block: 28px calc(env(safe-area-inset-bottom, 0px) + 28px); font-family: var(--mono); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .pinner, .btn, .post, .job { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<div id="spotlight" aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Sections">
+  <div class="wrap">
+    <a class="logo" href="#top">Varsha<span>.</span></a>
+    <div class="nav-links">
+      <a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#writing">Writing</a><a href="#projects">Projects</a>
+    </div>
+    <a class="btn btn-primary btn-sm" href="#contact">Contact</a>
+  </div>
+</nav>
+
+<main id="top" class="wrap">
+  <!-- Profile -->
+  <header class="profile">
+    <div class="card">
+      <div class="who">
+        <img class="photo" src="headshot.jpg" alt="Varsha Shah" width="76" height="76">
+        <span class="badge"><i></i>Principal TPM at Visa</span>
+      </div>
+      <h1>Varsha Shah</h1>
+      <p class="role">Trust, identity and AI risk platforms at global scale</p>
+      <p class="bio">Product leader with 10+ years in fraud prevention, identity and global compliance at PayPal and Visa. I take risk platforms from 0 to 1 and rebuild legacy rule engines as AI-native workflows. That work has protected 500M+ users and delivered $100M+ in revenue with 25 bps less fraud.</p>
+      <div class="actions">
+        <a class="btn btn-li" href="https://www.linkedin.com/in/varsha-shah-usa" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.2c0-1.24-.02-2.84-1.73-2.84-1.73 0-2 1.35-2 2.75V21h-4z"/></svg>Connect on LinkedIn</a>
+        <a class="btn btn-ghost" href="#contact">Get in touch</a>
+      </div>
+    </div>
+
+    <div class="side">
+      <figure class="vid">
+        <video id="pv" src="profile.mp4" poster="profile-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Video introduction from Varsha"></video>
+        <figcaption>
+          <span class="live-dot"></span><span>Meet Varsha</span>
+          <button class="vbtn" id="snd" type="button" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4z"/><path id="sndWave" d="M23 9l-6 6M17 9l6 6"/></svg><span id="sndLabel">Sound off</span></button>
+        </figcaption>
+      </figure>
+      <ul class="facts">
+        <li><span class="k">Email</span><span class="v"><span id="mail1">varsha_new@yahoo.com</span><button class="copy" type="button" data-copy="mail1">Copy</button></span></li>
+        <li><span class="k">LinkedIn</span><span class="v"><a href="https://www.linkedin.com/in/varsha-shah-usa" target="_blank" rel="noopener">varsha-shah-usa</a></span></li>
+        <li><span class="k">Location</span><span class="v">Los Gatos, California</span></li>
+        <li><span class="k">Work authorization</span><span class="v">US, no sponsorship needed</span></li>
+      </ul>
+    </div>
+  </header>
+
+  <div class="band" aria-label="Career highlights">
+    <div class="stat s1"><b>$100M+</b><span>revenue from the Integrated Risk Platform</span></div>
+    <div class="stat s2"><b>500M+</b><span>users protected</span></div>
+    <div class="stat s3"><b>1B+</b><span>devices in the identity graph</span></div>
+    <div class="stat s4"><b>$50M+/mo</b><span>saved with GenAI case management</span></div>
+    <div class="stat s5"><b>50</b><span>countries of KYC/KYB compliance</span></div>
+    <div class="stat s6"><b>367</b><span>people trained in agentic AI</span></div>
+  </div>
+
+  <!-- Experience -->
+  <section id="experience" aria-labelledby="exp-h">
+    <div class="card">
+      <div class="sec-head"><span class="label">Experience</span><h2 id="exp-h">Twelve years at PayPal, now at Visa</h2></div>
+      <div class="jobs">
+        <article class="job">
+          <div class="job-head"><h3>Visa</h3><span class="d">2024 – Present · Foster City, CA</span><span class="t">Principal Technical Product Manager (L8), AI Platform &amp; Integrated Risk Platform</span></div>
+          <div class="themes">
+            <div class="theme"><h4>AI platform &amp; IRP</h4><ul>
+              <li><b>$50M+/mo</b><span><strong>Case management turnaround.</strong> Unblocked a migration stalled for over a year in 8 weeks for 300+ tier-1 banks and 6M cases a month. GenAI cut manual handling 50%+.</span></li>
+              <li><b>0 → 1</b><span><strong>Multi-agent merchant risk.</strong> Agentic fraud engine with dynamic LLM rules across Visa Acceptance, Fraud Essentials, Shopify and Visa TAP + Stripe.</span></li>
+              <li><b>6M/day</b><span><strong>AI-native bank experience.</strong> Four reporting systems merged into one platform with tokenization-to-post-auth visibility for 11 banks.</span></li>
+            </ul></div>
+            <div class="theme"><h4>Productization &amp; governance</h4><ul>
+              <li><b>$12M+/yr</b><span><strong>COGS compression.</strong> Decision Manager's rules engine (300K transactions a day) moved to multi-tenant Valkey. Set enterprise LLM guardrails.</span></li>
+              <li><b>4 months</b><span><strong>Visa Card Insights.</strong> ML research commercialized as a 1st/3rd-party fraud API, with models embedded in Authorize.Net.</span></li>
+              <li><b>367</b><span><strong>AI velocity.</strong> Trained PMs, data scientists and analysts on Claude, MCP and prototyping. 10+ prototypes won Board and EVP funding.</span></li>
+            </ul></div>
+          </div>
+        </article>
+        <article class="job">
+          <div class="job-head"><h3>PayPal</h3><span class="d">2012 – 2024 · San Jose, CA</span><span class="t">Group Product Manager, Crypto Risk, Scam &amp; Identity Platforms</span></div>
+          <div class="themes">
+            <div class="theme"><h4>Identity, scams &amp; regulation</h4><ul>
+              <li><b>$40M/yr</b><span><strong>Identity graph.</strong> 1B+ devices, combining fingerprinting with keystroke and mouse biometrics.</span></li>
+              <li><b>$84M</b><span><strong>EU PSR/PSD3.</strong> LLM engine trained on dispute data intercepts scam payments before settlement.</span></li>
+              <li><b>GDPR</b><span><strong>Visa EU P2P policy gate.</strong> Value caps and consent filters shipped with Legal to a hard contract deadline.</span></li>
+              <li><b>$50M+</b><span><strong>GenAI scam automation.</strong> LLM categorization and NLP phishing classifiers across P2P, Invoicing and Crypto.</span></li>
+            </ul></div>
+            <div class="theme"><h4>Crypto, cards &amp; portfolio</h4><ul>
+              <li><b>$300M+</b><span><strong>PYUSD and crypto.</strong> Real-time risk, Travel Rule and wallet-drain controls at record-low loss bps.</span></li>
+              <li><b>3DS</b><span><strong>PayPal &amp; Venmo cards.</strong> Tokenization risk and dynamic 3DS cut card-not-present fraud and kept approval rates high.</span></li>
+              <li><b>$4B</b><span><strong>ACH representment.</strong> Open-banking retries that avoid NSF fees under CFPB UDAAP and NACHA.</span></li>
+              <li><b>$91B+</b><span><strong>Group risk.</strong> Led 6 PMs and 40+ releases a quarter, with KYC engines in 50 countries.</span></li>
+            </ul></div>
+          </div>
+        </article>
+      </div>
+      <div class="how">
+        <div><span class="label">How I work</span><h3 style="margin-top:6px">Never show up with a blank page.</h3><p style="margin-top:6px">AI note-takers record misalignment. I bring a draft flow or a working prototype and fix it live with the room.</p></div>
+        <ol>
+          <li><span><b>Map the journey on screen,</b> including fallback states.</span></li>
+          <li><span><b>Write hypotheses into the flow</b> where everyone can see them.</span></li>
+          <li><span><b>Fix broken points on the spot</b> with legal, compliance and engineering.</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" aria-labelledby="skills-h">
+    <div class="card">
+      <div class="sec-head"><span class="label">Skills</span><h2 id="skills-h">What I work on</h2><p>Areas of expertise.</p></div>
+      <div class="skills">
+        <div class="skill k1"><h3>Identity &amp; authentication</h3><div class="chips"><span class="chip">Device graphs</span><span class="chip">Behavioral biometrics</span><span class="chip">Tokenization</span><span class="chip">3DS</span><span class="chip">CIP / KYC / KYB</span></div></div>
+        <div class="skill k2"><h3>Fraud &amp; abuse</h3><div class="chips"><span class="chip">Scam &amp; APP fraud</span><span class="chip">Bot &amp; agent detection</span><span class="chip">Card-not-present</span><span class="chip">Case management</span><span class="chip">Disputes</span></div></div>
+        <div class="skill k3"><h3>Risk engines</h3><div class="chips"><span class="chip">ML &amp; rule engines</span><span class="chip">Dynamic LLM rules</span><span class="chip">Decision Manager</span><span class="chip">Multi-tenant Valkey</span><span class="chip">COGS compression</span></div></div>
+        <div class="skill k4"><h3>Regulation &amp; privacy</h3><div class="chips"><span class="chip">GDPR</span><span class="chip">PSD3 / PSR</span><span class="chip">Travel Rule</span><span class="chip">VIDA</span><span class="chip">MAS</span><span class="chip">CFPB / NACHA</span><span class="chip">PIPL · RBI</span></div></div>
+        <div class="skill k5"><h3>AI &amp; agentic systems</h3><div class="chips"><span class="chip">Multi-agent orchestration</span><span class="chip">Claude</span><span class="chip">Astra</span><span class="chip">MCP</span><span class="chip">LLM guardrails</span><span class="chip">Rapid prototyping</span></div></div>
+        <div class="skill k6"><h3>Leadership</h3><div class="chips"><span class="chip">0-to-1 products</span><span class="chip">Matrixed influence</span><span class="chip">Led 6 PMs</span><span class="chip">Exec storytelling</span><span class="chip">REST APIs</span><span class="chip">PYUSD</span></div></div>
+      </div>
+      <div class="awards">
+        <div class="award"><b>2×</b><span><strong>"Outstanding" rating</strong>Visa's top performance rating</span></div>
+        <div class="award"><b>9×</b><span><strong>Uplift &amp; Boost Awards</strong>Recognition at Visa</span></div>
+        <div class="award"><b>1st</b><span><strong>Hackathon, WasteNoFood</strong>3M+ meals donated</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Writing -->
+  <section id="writing" aria-labelledby="writing-h">
+    <div class="card">
+      <div class="sec-head"><span class="label">Writing</span><h2 id="writing-h">LinkedIn posts</h2><p>Every card opens the post on LinkedIn. Filter by topic.</p></div>
+      <div class="filters" role="group" aria-label="Filter posts by topic" id="postFilters"></div>
+      <div class="posts" id="postGrid"></div>
+      <div class="more"><button class="btn btn-ghost btn-sm" id="morePosts" type="button"></button></div>
+    </div>
+  </section>
+
+  <!-- Inside my work -->
+  <section id="inside" aria-labelledby="inside-h">
+    <div class="card">
+      <div class="sec-row sec-head">
+        <div style="display:grid;gap:6px"><span class="label">Varsha at work</span><h2 id="inside-h">A day across fraud, identity, AI and teams</h2></div>
+        <div class="cctl">
+          <button class="cbtn" id="cPrev" type="button" aria-label="Previous moment"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <button class="cbtn" id="cPlay" type="button" aria-label="Pause autoplay"></button>
+          <button class="cbtn" id="cNext" type="button" aria-label="Next moment"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+        </div>
+      </div>
+      <div class="carousel" id="carousel" role="region" aria-roledescription="carousel" aria-label="Varsha at work" tabindex="0">
+        <article class="mcard t1" aria-roledescription="slide" aria-label="1 of 6">
+          <div class="mimg"><img src="w1-swim.jpg" alt="Anime avatar of Varsha swimming laps in an outdoor pool" loading="lazy"><span class="mtag">Recharge</span></div>
+          <div class="mbody"><h3>Laps before the day starts</h3><p>Clear head, steady pace.</p></div>
+        </article>
+        <article class="mcard t2" aria-roledescription="slide" aria-label="2 of 6">
+          <div class="mimg"><img src="w2-run.jpg" alt="Anime avatar of Varsha running across a hill at sunrise" loading="lazy"><span class="mtag">Momentum</span></div>
+          <div class="mbody"><h3>Out the door and moving</h3><p>Energy for the problems that matter.</p></div>
+        </article>
+        <article class="mcard t3" aria-roledescription="slide" aria-label="3 of 6">
+          <div class="mimg"><img src="w3-fraud.jpg" alt="Anime avatar of Varsha leading a global fraud detection command center" loading="lazy"><span class="mtag">Fraud · global</span></div>
+          <div class="mbody"><h3>Global fraud detection</h3><p>Scoring checkouts on velocity, cart, payment, shipping and behavior.</p>
+            <div class="mpills"><i class="p">velocity</i><i class="p">cart</i><i class="f">payment</i><i class="p">shipping</i><i class="f">behavior</i></div></div>
+        </article>
+        <article class="mcard t4" aria-roledescription="slide" aria-label="4 of 6">
+          <div class="mimg"><img src="w4-monitor.jpg" alt="Anime avatar of Varsha monitoring live identity signals on holographic screens" loading="lazy"><span class="mtag">Identity · live</span></div>
+          <div class="mbody"><h3>Live identity signals</h3><p>Linking devices to accounts to catch account farms early.</p>
+            <div class="mnote">1 shared device · 4 accounts → farm signal</div></div>
+        </article>
+        <article class="mcard t5" aria-roledescription="slide" aria-label="5 of 6">
+          <div class="mimg"><img src="w5-modules.jpg" alt="Anime avatar of Varsha configuring customisable AI modules" loading="lazy"><span class="mtag">AI · prototyping</span></div>
+          <div class="mbody"><h3>Customisable AI modules</h3><p>Prototyping agentic fraud rules with Claude.</p>
+            <div class="mnote">3 agents · 12 dynamic rules · demo-ready</div></div>
+        </article>
+        <article class="mcard t6" aria-roledescription="slide" aria-label="6 of 6">
+          <div class="mimg"><img src="w6-integ.jpg" alt="Anime avatars of Varsha and a teammate integrating two systems" loading="lazy"><span class="mtag">Teams · integration</span></div>
+          <div class="mbody"><h3>Systems integration</h3><p>Engineering, legal and risk aligned before the release ships.</p></div>
+        </article>
+      </div>
+      <div class="dots" id="cDots" role="group" aria-label="Choose a moment"></div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" aria-labelledby="projects-h">
+    <div class="card">
+      <div class="sec-head"><span class="label">Personal projects</span><h2 id="projects-h">Things I build to stay hands-on</h2><p>Side projects, all live. Flip a card to see its architecture.</p></div>
+      <div class="projects" id="projectGrid"></div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" aria-labelledby="contact-h">
+    <div class="card contact">
+      <span class="label">Contact</span>
+      <h2 id="contact-h">Let's talk trust, identity and AI.</h2>
+      <p>Open to principal and group product roles in risk, identity, compliance and AI platforms.</p>
+      <div class="mail" id="mail2">varsha_new@yahoo.com</div>
+      <div class="actions" style="justify-content:center;margin-top:4px">
+        <button class="btn btn-primary" type="button" data-copy="mail2">Copy email</button>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/varsha-shah-usa" target="_blank" rel="noopener">Connect on LinkedIn ↗</a>
+      </div>
+    </div>
+  </section>
+  <footer>© 2026 Varsha Shah · Los Gatos, CA</footer>
+</main>
+
+<script>
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const LI = {
+"7511772481733480448": "https://www.linkedin.com/posts/varsha-shah-usa_visa-claude-replit-activity-7511772481733480448-iNZD",
+"7488239467300954112": "https://www.linkedin.com/posts/varsha-shah-usa_paypal-visa-claude-activity-7488239467300954112-LN49",
+"7485710278178009088": "https://www.linkedin.com/posts/varsha-shah-usa_visa-paypal-anthropic-activity-7485710278178009088-7jBi",
+"7477330042289684480": "https://www.linkedin.com/posts/varsha-shah-usa_ai-doesnt-just-scale-productivity-it-scales-activity-7477330042289684480-D7bj",
+"7475201096722849792": "https://www.linkedin.com/posts/varsha-shah-usa_productmanagement-principalpm-enterpriseai-activity-7475201096722849792-3r_b",
+"7473041797057884160": "https://www.linkedin.com/posts/varsha-shah-usa_productmanagement-principalpm-ai-activity-7473041797057884160-hCzq",
+"7470474873518268416": "https://www.linkedin.com/posts/varsha-shah-usa_imagine-a-scenario-however-if-youve-worked-activity-7470474873518268416-oN3U",
+"7469040414109548545": "https://www.linkedin.com/posts/varsha-shah-usa_deals-for-you-activity-7469040414109548545-WFbM",
+"7467953266384056321": "https://www.linkedin.com/posts/varsha-shah-usa_paypal-visa-claude-activity-7467953266384056321-wlzW",
+"7467228488622714880": "https://www.linkedin.com/posts/varsha-shah-usa_ever-been-on-a-second-date-where-they-remember-activity-7467228488622714880-r93s",
+"7441861330501890050": "https://www.linkedin.com/posts/varsha-shah-usa_agentic-payments-activity-7441861330501890050-yyR8",
+"7350532093132619778": "https://www.linkedin.com/posts/varsha-shah-usa_week-2-evolution-of-coach-raman-communication-activity-7350532093132619778-8a20",
+"7346190947497451523": "https://www.linkedin.com/posts/varsha-shah-usa_buildinpublic-dementia-caregiving-activity-7346190947497451523-fE2y",
+"7195769798184611840": "https://www.linkedin.com/posts/varsha-shah-usa_cfpb-1099-open-banking-and-comparison-with-activity-7195769798184611840-Qhui",
+"7193595473360732162": "https://www.linkedin.com/posts/varsha-shah-usa_vertex-ai-hallucination-elephant-luna-activity-7193595473360732162-tEd5",
+"7193233076880089088": "https://www.linkedin.com/posts/varsha-shah-usa_different-types-of-bias-in-models-activity-7193233076880089088-S1IU",
+"7191798613289672704": "https://www.linkedin.com/posts/varsha-shah-usa_stabecoin-strategy-to-combat-devaluation-activity-7191798613289672704-bTYt",
+"7190760466938294272": "https://www.linkedin.com/posts/varsha-shah-usa_copilot-calming-zen-ux-spinner-activity-7190760466938294272-ncWo",
+"7189787730162208768": "https://www.linkedin.com/posts/varsha-shah-usa_eu-ai-act-breakdown-for-data-scientists-activity-7189787730162208768-sBLX",
+"7189281027507310592": "https://www.linkedin.com/posts/varsha-shah-usa_eu-ai-activity-7189281027507310592-TdiG",
+"7183200565995167744": "https://www.linkedin.com/posts/varsha-shah-usa_copilot-surreal-imagination-stablecoin-activity-7183200565995167744-nUtW",
+"7181742357615181824": "https://www.linkedin.com/feed/update/urn:li:activity:7181742357615181824/",
+"7094373772220141568": "https://www.linkedin.com/feed/update/urn:li:activity:7094373772220141568/",
+"7094373733393436672": "https://www.linkedin.com/posts/varsha-shah-usa_cryptohitman-activity-7094373733393436672-Uvqz",
+"7091836406607593472": "https://www.linkedin.com/feed/update/urn:li:activity:7091836406607593472/",
+"7091835656867385344": "https://www.linkedin.com/feed/update/urn:li:activity:7091835656867385344/",
+"7090741649613467649": "https://www.linkedin.com/posts/varsha-shah-usa_cryptocurrency-crypto-payments-ugcPost-7090741562921390080-W2zR/?highlightedUpdateUrn=urn%3Ali%3Aactivity%3A7090741649613467649&highlightedUpdateType=SOCIAL_SHARE&origin=SOCIAL_SHARE"
+};
+const POSTS = [
+  ["2026-10-02", "Visa, Claude and Replit", "AI in practice", "7511772481733480448"],
+  ["2026-07-29", "PayPal, Visa and Claude (July)", "AI in practice", "7488239467300954112"],
+  ["2026-07-22", "Visa, PayPal and Anthropic", "AI in practice", "7485710278178009088"],
+  ["2026-06-29", "AI doesn't just scale productivity, it scales…", "AI in practice", "7477330042289684480"],
+  ["2026-06-23", "Product management, the principal PM and enterprise AI", "Product leadership", "7475201096722849792"],
+  ["2026-06-17", "Product management, the principal PM and AI", "Product leadership", "7473041797057884160"],
+  ["2026-06-10", "Imagine a scenario… however, if you've worked…", "Product leadership", "7470474873518268416"],
+  ["2026-06-06", "Deals for you", "Payments & commerce", "7469040414109548545"],
+  ["2026-06-03", "PayPal, Visa and Claude (June)", "AI in practice", "7467953266384056321"],
+  ["2026-06-01", "Ever been on a second date where they remember…", "Product leadership", "7467228488622714880"],
+  ["2026-03-23", "Agentic payments", "Payments & commerce", "7441861330501890050"],
+  ["2025-07-14", "Week 2: evolution of Coach Raman's communication", "Build in public", "7350532093132619778"],
+  ["2025-07-02", "#BuildInPublic: dementia caregiving", "Build in public", "7346190947497451523"],
+  ["2024-05-13", "CFPB 1099, open banking and how they compare", "Responsible AI & regulation", "7195769798184611840"],
+  ["2024-05-07", "Vertex AI hallucination: Luna the elephant", "Responsible AI & regulation", "7193595473360732162"],
+  ["2024-05-06", "Different types of bias in models", "Responsible AI & regulation", "7193233076880089088"],
+  ["2024-05-02", "Stablecoin strategy to combat devaluation", "Crypto & stablecoins", "7191798613289672704"],
+  ["2024-04-29", "Copilot and the calming zen UX spinner", "AI in practice", "7190760466938294272"],
+  ["2024-04-27", "EU AI Act breakdown for data scientists", "Responsible AI & regulation", "7189787730162208768"],
+  ["2024-04-25", "The EU AI Act", "Responsible AI & regulation", "7189281027507310592"], 
+  ["2023-07-28", "Cryptocurrency and crypto payments", "Crypto & stablecoins", "7090741649613467649"]
+];
+const PROJECTS = [
+  { id: "agentic", name: "Agentic Commerce Fraud Demo", tag: "Fraud · Agentic AI", g: ["#0A84FF", "#5E5CE6"],
+    stat: ["5", "live fraud signals"], chip: "Bot vs. human",
+    d: "A trusted shopper's AI agent versus a fraud bot, scored live at checkout.",
+    fit: "bot attacks and account abuse",
+    live: "https://agentic-commerce-tb6h.vercel.app", repo: "https://github.com/budhli/agentic_commerce",
+    archTitle: "Architecture", arch: [
+      ["Shopper agents", "Good Bot and Shadow Bot profiles drive a PeakGear purchase"],
+      ["Agent chat", "iMessage-style conversation with inline product and checkout cards"],
+      ["Checkout", "Agent pays with a saved card; cart, payment and shipping data captured"],
+      ["Fraud monitor", "Scores velocity, cart, payment, shipping and behavior, each with PASS/FLAG and a reason"],
+      ["Verdict", "Animated risk gauge rolls up to approve or decline"]],
+    stack: ["React", "Vite", "Client-side rules", "Vercel"] },
+  { id: "wiki", name: "llm-wiki for legacy AML", tag: "Compliance · AI tooling", g: ["#30D158", "#0A84FF"],
+    stat: ["3 → 1", "sources to wiki"], chip: "Knowledge rescue",
+    d: "An LLM turns an undocumented AML codebase into a living, cross-linked wiki.",
+    fit: "operationalizing compliance in legacy platforms",
+    live: "https://aml-wiki.vercel.app", repo: "https://github.com/budhli/aml-wiki",
+    archTitle: "Architecture", arch: [
+      ["Raw sources", "IBM AMLSim codebase, sparse product docs, architecture meeting transcripts"],
+      ["LLM agent", "Claude Code follows a CLAUDE.md wiki schema to ingest and update"],
+      ["Obsidian vault", "Capability maps, AML patterns, ADRs, gap analysis, data model"],
+      ["Diagrams", "Mermaid on every process page, cross-linked with wikilinks"],
+      ["Lesson site", "Static interactive tutorial deployed on Vercel"]],
+    stack: ["Claude Code", "CLAUDE.md schema", "Obsidian", "Mermaid", "Vercel"] },
+  { id: "glam", name: "Glam Mesh", tag: "Social commerce · AI agents", g: ["#FF375F", "#BF5AF2"],
+    stat: ["1 link", "group shopping"], chip: "Shop together",
+    d: "Friends vote on your beauty cart, then an AI agent gives the group verdict.",
+    fit: "purchase funnels and trust in shared experiences",
+    live: "https://glam-mesh.vercel.app", repo: "https://github.com/budhli/glam-mesh",
+    archTitle: "Architecture", arch: [
+      ["Next.js App Router", "Shop, cart and shareable /shared/[shareId] pages"],
+      ["API routes", "/api/cart, /api/cart/[id]/vote, /api/recommend, /api/synthesize"],
+      ["State", "Upstash Redis for shared carts, with an in-memory fallback in development"],
+      ["AI agents", "Vercel AI SDK with xAI Grok-3: recommendations and a streamed verdict"],
+      ["Quality", "TypeScript and Zod validation, tested with Vitest"]],
+    stack: ["Next.js", "TypeScript", "Tailwind", "Vercel AI SDK", "Grok-3", "Upstash Redis", "Vitest"] },
+  { id: "raman", name: "Coach Raman", tag: "Dementia care · Caregivers", g: ["#64D2FF", "#30D158"],
+    stat: ["3", "languages"], chip: "For caregivers", posts: ["7346190947497451523", "7350532093132619778"],
+    d: "A dementia-care coach that helps caregivers communicate with their loved ones.",
+    fit: "privacy-first, accessible design for every user",
+    live: "https://raman-insights.vercel.app", alt: ["Hindi / Spanish", "https://raman-hindi-spanish.vercel.app"], repo: "https://github.com/budhli/raman_insights",
+    archTitle: "Architecture", arch: [
+      ["React SPA", "Vite build with Lucide icons, deployed to Vercel"],
+      ["Three modes", "Free Education; Training and Live Chat for practice"],
+      ["LLM coaching", "OpenAI GPT-4o-mini, with an option to bring your own API key"],
+      ["Reflection tools", "Thought Journal and Reflection Chat components"],
+      ["Localization", "JSON locale packs (en-US, es-ES, hi-IN); language choice saved on device"]],
+    stack: ["React", "Vite", "GPT-4o-mini", "i18n", "Vercel"] },
+  { id: "recast", name: "Recast", tag: "Careers · AI", g: ["#FF9F0A", "#FF375F"],
+    stat: ["9", "PM competencies"], chip: "CV gap analyzer",
+    d: "Finds the gaps in a CV for PM roles and builds a plan to close them.",
+    fit: "translating needs into product requirements",
+    live: "https://recast-flax.vercel.app", repo: null,
+    archTitle: "How it works", arch: [
+      ["Upload", "Graduate shares their current CV"],
+      ["Gap analysis", "AI scores it against nine product management competencies"],
+      ["Build guides", "Targeted projects generated to close each gap"],
+      ["Rewrite", "CV reframed in product language for APM roles"]],
+    stack: ["AI analysis", "Vercel"] },
+  { id: "fds", name: "Frontend Design System", tag: "Design · Claude Code", g: ["#40C8E0", "#5E5CE6"],
+    stat: ["20+", "UI effects"], chip: "Design system",
+    d: "A component library and effects showcase built with Claude Code.",
+    fit: "a high bar for consistent, polished UX",
+    live: "https://frontend-design-opal.vercel.app", repo: "https://github.com/budhli/frontend-design",
+    archTitle: "Architecture", arch: [
+      ["Design tokens", "design-system.css: shared tokens and component styles"],
+      ["Component library", "demo.html: every component in sectioned cards"],
+      ["Effects showcase", "demo2.html: bento grid with CSS @property motion"],
+      ["Skill-driven", "Generated with the Claude Code frontend-design skill"]],
+    stack: ["HTML", "CSS", "@property", "Claude Code", "Vercel"] },
+  { id: "early", name: "Early Careers Launchpad", tag: "Careers · Program", g: ["#5E5CE6", "#BF5AF2"],
+    stat: ["4", "weeks"], chip: "Program",
+    d: "A four-week program for graduates to ship real AI projects.",
+    fit: "mentoring and scaling AI skills (367 trained at Visa)",
+    live: "https://early-careers-launch.vercel.app", repo: null,
+    archTitle: "How it works", arch: [
+      ["Build", "Graduates pick real problems and build AI projects"],
+      ["Deploy", "Every project ships live, not just to a slide"],
+      ["Position", "LinkedIn profile optimization"],
+      ["Interview", "Coaching to tell the product story"]],
+    stack: ["Program design", "Vercel"] },
+  { id: "kodava", name: "Kodava Community", tag: "Community", g: ["#8E8E93", "#3A3A3C"],
+    stat: ["1", "community"], chip: "Community app",
+    d: "Festivals, recipes and family heritage for the Kodava community.",
+    fit: "user empathy and community building",
+    live: "https://kodava-community.vercel.app", repo: "https://github.com/budhli/kodava-community",
+    archTitle: "Architecture", arch: [
+      ["React app", "Create React App with Lucide icons"],
+      ["Events", "Festivals such as Kail Pold and Kaveri Sankramana, plus workshops"],
+      ["Recipes", "Community-shared dishes such as Pandi Curry and Kadambuttu"],
+      ["Heritage", "Families organized by Ainmane (ancestral home)"]],
+    stack: ["React", "Lucide", "Vercel"] }
+];
+
+const liUrl = id => LI[id] || `https://www.linkedin.com/feed/update/urn:li:activity:${id}/`;
+
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const fmt = d => `${MONTHS[+d.slice(5, 7) - 1]} ${+d.slice(8)}, ${d.slice(0, 4)}`;
+const SVG = {
+  li: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.2c0-1.24-.02-2.84-1.73-2.84-1.73 0-2 1.35-2 2.75V21h-4z"/></svg>',
+  up: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>',
+  flip: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 21v-5h5"/></svg>',
+  x: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>',
+  pause: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>',
+  play: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>'
+};
+const ICONS = {
+  agentic: '<path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/>',
+  wiki: '<path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M8 7h6M8 11h6"/>',
+  raman: '<path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"/>',
+  glam: '<circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M3 4h2l2.5 11h11L21 8H6.2"/>',
+  recast: '<path d="M4 4h10l6 6v10H4z"/><path d="M14 4v6h6M8 14h8M8 17h5"/>',
+  fds: '<rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><circle cx="17" cy="17" r="4"/>',
+  early: '<path d="M4 20l6-6M14 4l6 6-8 8-6-6z"/><path d="M15 9l-1 1"/>',
+  kodava: '<circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 20c0-2.5 1.5-4.6 3.5-5.5 1.6.7 2.5 2.4 2.5 5.5"/>'
+};
+
+/* Writing */
+const CAT_ICON = [
+  '<path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M10 10h4v4h-4z"/>',
+  '<path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M8 12h8M12 8v8"/>',
+  '<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/>',
+  '<circle cx="12" cy="12" r="9"/><path d="M9 8h4.5a2.5 2.5 0 0 1 0 5H9h5a2.5 2.5 0 0 1 0 5H9M9 6v12M12 6v2M12 16v2"/>',
+  '<path d="M3 20l6-6 4 4 8-8"/><path d="M15 10h6v6"/>',
+  '<path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"/>'
+];
+/* Real post images: drop files named li-<post id>.jpg next to the page and list the ids here. */
+const POST_IMG = {};
+const CATS = ["AI in practice", "Responsible AI & regulation", "Payments & commerce", "Crypto & stablecoins", "Product leadership", "Build in public"];
+let cat = "All", all = false;
+function renderPosts() {
+  const count = c => POSTS.filter(p => p[2] === c).length;
+  document.getElementById("postFilters").innerHTML = ["All", ...CATS].map(c =>
+    `<button type="button" aria-pressed="${c === cat}" data-c="${esc(c)}">${esc(c)}<span class="n">${c === "All" ? POSTS.length : count(c)}</span></button>`).join("");
+  const list = POSTS.filter(p => cat === "All" || p[2] === cat);
+  const shown = all || cat !== "All" ? list : list.slice(0, 9);
+  document.getElementById("postGrid").innerHTML = shown.map(([d, t, c, id]) => `
+    <a class="post c${CATS.indexOf(c) + 1}" href="${liUrl(id)}" target="_blank" rel="noopener">
+      <span class="thumb" aria-hidden="true">${POST_IMG[id] ? `<img src="${POST_IMG[id]}" alt="" loading="lazy">` : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${CAT_ICON[CATS.indexOf(c)]}</svg>`}</span>
+      <span class="top"><span class="cat">${esc(c)}</span><span class="lic" aria-hidden="true">${SVG.li}</span></span>
+      <span class="t">${esc(t)}</span>
+      <span class="d">${fmt(d)}</span>
+      <span class="go">Read on LinkedIn ${SVG.up}</span>
+    </a>`).join("");
+  const mb = document.getElementById("morePosts");
+  mb.hidden = cat !== "All";
+  mb.textContent = all ? "Show fewer" : `Show all ${POSTS.length} posts`;
+}
+document.getElementById("postFilters").addEventListener("click", e => { const b = e.target.closest("[data-c]"); if (b) { cat = b.dataset.c; renderPosts(); } });
+document.getElementById("morePosts").addEventListener("click", () => { all = !all; renderPosts(); });
+renderPosts();
+
+/* Projects */
+const PG = { agentic: "linear-gradient(135deg,#F43F5E,#FB923C)", wiki: "linear-gradient(135deg,#0891B2,#22D3EE)", raman: "linear-gradient(135deg,#10B981,#34D399)", glam: "linear-gradient(135deg,#8B5CF6,#EC4899)", recast: "linear-gradient(135deg,#F59E0B,#FBBF24)", fds: "linear-gradient(135deg,#6366F1,#22D3EE)", early: "linear-gradient(135deg,#0284C7,#6366F1)", kodava: "linear-gradient(135deg,#64748B,#94A3B8)" };
+const ORDER = ["agentic", "wiki", "raman", "glam", "recast", "fds", "early", "kodava"];
+document.getElementById("projectGrid").innerHTML = ORDER.map(k => PROJECTS.find(p => p.id === k)).map(p => `
+  <article class="pcard" id="p-${p.id}" style="--pg:${PG[p.id]}">
+    <div class="pinner">
+      <div class="face">
+        <span class="picon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[p.id]}</svg></span>
+        <span class="ptag">${esc(p.tag)}</span>
+        <h3>${esc(p.name)}</h3>
+        <p>${esc(p.d)}</p>
+        <div class="pact">
+          <a class="btn btn-primary btn-sm" href="${p.live}" target="_blank" rel="noopener" aria-label="Launch ${esc(p.name)}">Launch ${SVG.up}</a>
+          <button class="btn btn-ghost btn-sm" type="button" data-flip="${p.id}">${esc(p.archTitle)} ${SVG.flip}</button>
+        </div>
+      </div>
+      <div class="face back" inert>
+        <div class="bh"><div><h3>${esc(p.archTitle)}</h3><div class="sub">${esc(p.name)}</div></div>
+          <button class="x" type="button" data-flip="${p.id}" aria-label="Back to ${esc(p.name)}">${SVG.x}</button></div>
+        <ol class="arch">${p.arch.map(([b, s]) => `<li><b>${esc(b)}</b><span>${esc(s)}</span></li>`).join("")}</ol>
+        <div class="stack">${p.stack.map(s => `<i>${esc(s)}</i>`).join("")}</div>
+        ${p.posts ? `<div class="related">${p.posts.map(id => { const q = POSTS.find(x => x[3] === id); return q ? `<a href="${liUrl(id)}" target="_blank" rel="noopener">LinkedIn: ${esc(q[1])} ↗</a>` : ""; }).join("")}</div>` : ""}
+        <div class="pact">
+          <a class="btn btn-primary btn-sm" href="${p.live}" target="_blank" rel="noopener">Launch ${SVG.up}</a>
+          ${p.alt ? `<a class="btn btn-ghost btn-sm" href="${p.alt[1]}" target="_blank" rel="noopener">${esc(p.alt[0])}</a>` : ""}
+          ${p.repo ? `<a class="btn btn-ghost btn-sm" href="${p.repo}" target="_blank" rel="noopener">GitHub</a>` : ""}
+        </div>
+      </div>
+    </div>
+  </article>`).join("");
+document.getElementById("projectGrid").addEventListener("click", e => {
+  const b = e.target.closest("[data-flip]"); if (!b) return;
+  const card = document.getElementById("p-" + b.dataset.flip);
+  const on = card.classList.toggle("flipped");
+  const [front, back] = card.querySelectorAll(".face");
+  front.inert = on; back.inert = !on;
+  setTimeout(() => (on ? back : front).querySelector("button").focus({ preventScroll: true }), 400);
+});
+
+/* Varsha at work carousel (autoplay) */
+(() => {
+  const track = document.getElementById("carousel");
+  const cards = [...track.querySelectorAll(".mcard")];
+  const dotsEl = document.getElementById("cDots");
+  const playBtn = document.getElementById("cPlay");
+  const STEP = 3800;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let i = 0, timer = null, userPaused = reduce, hold = false, resumeT = null;
+
+  dotsEl.innerHTML = cards.map((c, k) => `<button type="button" aria-label="Go to moment ${k + 1}: ${c.querySelector("h3").textContent}"></button>`).join("");
+  const dots = [...dotsEl.children];
+
+  function mark(n) {
+    i = n;
+    cards.forEach((c, k) => { if (k === n) { if (!c.classList.contains("on")) { c.classList.add("on"); } } else c.classList.remove("on"); });
+    dots.forEach((d, k) => d.setAttribute("aria-current", String(k === n)));
+  }
+  function maxIndex() {
+    // last index whose start can still be scrolled to
+    const max = track.scrollWidth - track.clientWidth;
+    let m = 0; cards.forEach((c, k) => { if (c.offsetLeft - cards[0].offsetLeft <= max + 2) m = k; });
+    return m;
+  }
+  function go(n, smooth = true) {
+    const last = cards.length - 1;
+    if (n > last) n = 0; if (n < 0) n = last;
+    const left = Math.min(cards[n].offsetLeft - cards[0].offsetLeft, track.scrollWidth - track.clientWidth);
+    track.scrollTo({ left, behavior: smooth && !reduce ? "smooth" : "auto" });
+    mark(n);
+  }
+  function tick() { go(i + 1); }
+  function start() { stop(); if (!userPaused && !hold && !document.hidden) timer = setInterval(tick, STEP); }
+  function stop() { clearInterval(timer); timer = null; }
+  function setBtn() {
+    playBtn.innerHTML = userPaused ? SVG.play : SVG.pause;
+    playBtn.setAttribute("aria-label", userPaused ? "Play autoplay" : "Pause autoplay");
+  }
+
+  // sync active card with manual scrolling
+  let raf = null;
+  track.addEventListener("scroll", () => {
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => {
+      const x = track.scrollLeft;
+      if (x >= track.scrollWidth - track.clientWidth - 2 && i >= maxIndex()) return; // at end: keep chosen card
+      let best = 0, bd = Infinity;
+      cards.forEach((c, k) => { const d = Math.abs(c.offsetLeft - cards[0].offsetLeft - x); if (d < bd) { bd = d; best = k; } });
+      mark(best);
+    });
+  }, { passive: true });
+
+  // pause while the visitor is interacting, resume shortly after
+  const pauseHold = () => { hold = true; stop(); clearTimeout(resumeT); };
+  const releaseHold = () => { clearTimeout(resumeT); resumeT = setTimeout(() => { hold = false; start(); }, 2500); };
+  track.addEventListener("pointerenter", pauseHold);
+  track.addEventListener("pointerleave", releaseHold);
+  track.addEventListener("touchstart", pauseHold, { passive: true });
+  track.addEventListener("touchend", releaseHold, { passive: true });
+  track.addEventListener("focusin", pauseHold);
+  track.addEventListener("focusout", releaseHold);
+  track.addEventListener("keydown", e => {
+    if (e.key === "ArrowRight") { e.preventDefault(); go(i + 1); }
+    if (e.key === "ArrowLeft") { e.preventDefault(); go(i - 1); }
+  });
+
+  document.getElementById("cNext").addEventListener("click", () => { go(i + 1); start(); });
+  document.getElementById("cPrev").addEventListener("click", () => { go(i - 1); start(); });
+  dots.forEach((d, k) => d.addEventListener("click", () => { go(k); start(); }));
+  playBtn.addEventListener("click", () => { userPaused = !userPaused; setBtn(); userPaused ? stop() : start(); });
+  document.addEventListener("visibilitychange", () => (document.hidden ? stop() : start()));
+
+  // only autoplay while the carousel is on screen
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(([e]) => { if (e.isIntersecting) { hold = false; start(); } else { stop(); } }, { threshold: 0.35 }).observe(track);
+  }
+  mark(0); setBtn(); start();
+})();
+
+/* Profile video sound */
+(() => {
+  const v = document.getElementById("pv"), b = document.getElementById("snd"), l = document.getElementById("sndLabel"), w = document.getElementById("sndWave");
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) { v.removeAttribute("autoplay"); v.pause(); v.controls = true; }
+  b.addEventListener("click", () => {
+    v.muted = !v.muted;
+    if (!v.muted) { v.currentTime = 0; v.play().catch(() => {}); }
+    b.setAttribute("aria-pressed", String(!v.muted));
+    l.textContent = v.muted ? "Sound off" : "Sound on";
+    w.setAttribute("d", v.muted ? "M23 9l-6 6M17 9l6 6" : "M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14");
+  });
+})();
+
+/* Copy + spotlight */
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-copy]"); if (!b) return;
+  const src = document.getElementById(b.dataset.copy), label = b.textContent;
+  const reset = () => setTimeout(() => (b.textContent = label), 1600);
+  const fallback = () => { const r = document.createRange(); r.selectNodeContents(src); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = "Selected"; reset(); };
+  try { navigator.clipboard.writeText(src.textContent.trim()).then(() => { b.textContent = "Copied"; reset(); }, fallback); } catch (err) { fallback(); }
+});
+if (matchMedia("(hover: hover)").matches && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  const sp = document.getElementById("spotlight");
+  addEventListener("pointermove", e => { sp.style.setProperty("--mx", e.clientX + "px"); sp.style.setProperty("--my", e.clientY + "px"); }, { passive: true });
+}
+</script>
+
+</body>
+</html>
